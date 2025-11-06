@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services - TenterCloud</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true">
+  <style>
+    /* Animation + theme */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .service-card {
+      transition: all 0.4s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 30px rgba(127, 255, 212, 0.4);
+    }
+
+    nav a {
+      position: relative;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background-color: #38f6e4;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white font-sans overflow-x-hidden">
+
+  <!-- 🌐 Navbar -->
+  <header class="flex justify-between items-center px-6 py-4 bg-purple-900/30 backdrop-blur-md border-b border-purple-700 fixed top-0 left-0 w-full z-20">
+    <a href="index.html" class="flex items-center">
+      <img src="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true" alt="Logo" class="w-10 h-10 rounded-full">
+    </a>
+    <nav class="space-x-8 text-gray-300 font-bold tracking-wide hidden md:flex">
+      <a href="index.html" class="hover:text-aqua-400">HOME</a>
+      <a href="services.html" class="text-aqua-400">SERVICES</a>
+      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="hover:text-aqua-400">DISCORD</a>
+    </nav>
+    <div class="md:hidden">
+      <button id="menu-btn" class="focus:outline-none">
+        <svg class="w-8 h-8 text-aqua-400" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 📱 Mobile Menu -->
+  <div id="mobile-menu" class="hidden bg-gray-900/95 backdrop-blur-md fixed top-16 left-0 w-full px-6 py-4 flex flex-col space-y-4 md:hidden z-10">
+    <a href="index.html" class="hover:text-aqua-400 font-bold uppercase">HOME</a>
+    <a href="services.html" class="text-aqua-400 font-bold uppercase">SERVICES</a>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="hover:text-aqua-400 font-bold uppercase">DISCORD</a>
+  </div>
+
+  <!-- 🔮 Hero -->
+  <section class="text-center mt-28 mb-16 fade-up">
+    <h1 class="text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-aqua-400 animate-pulse">
+      Our Premium Hosting Services
+    </h1>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+      Built for gamers, developers, and creators who want nothing but power, speed, and reliability.
+    </p>
+  </section>
+
+  <!-- ⚙️ Services Section -->
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6 pb-24">
+    
+    <!-- Minecraft Hosting -->
+    <div class="service-card bg-gray-900 p-8 rounded-2xl text-center border border-purple-700 fade-up">
+      <img src="https://img.icons8.com/color/96/minecraft-logo.png" class="mx-auto mb-4 animate-bounce">
+      <h2 class="text-3xl font-bold text-purple-300 mb-2">Minecraft Hosting</h2>
+      <p class="text-gray-400 mb-4">Lag-free, instant setup servers — play with friends anytime, anywhere.</p>
+      <p class="text-3xl font-extrabold text-aqua-400 mb-6">Starting ₹49/mo</p>
+      <a href="minecraft.html" class="bg-gradient-to-r from-purple-600 to-aqua-500 hover:scale-105 transition px-8 py-3 rounded-full font-semibold">Explore</a>
+    </div>
+
+    <!-- VPS Hosting -->
+    <div class="service-card bg-gray-900 p-8 rounded-2xl text-center border border-purple-700 fade-up" style="animation-delay: 0.2s;">
+      <img src="https://img.icons8.com/color/96/cloud-server.png" class="mx-auto mb-4 animate-bounce">
+      <h2 class="text-3xl font-bold text-purple-300 mb-2">VPS Hosting</h2>
+      <p class="text-gray-400 mb-4">Power your applications with AMD EPYC performance and blazing NVMe SSDs.</p>
+      <p class="text-3xl font-extrabold text-aqua-400 mb-6">Starting ₹499/mo</p>
+      <a href="vps.html" class="bg-gradient-to-r from-purple-600 to-aqua-500 hover:scale-105 transition px-8 py-3 rounded-full font-semibold">Explore</a>
+    </div>
+
+    <!-- Discord Bot Hosting -->
+    <div class="service-card bg-gray-900 p-8 rounded-2xl text-center border border-purple-700 fade-up" style="animation-delay: 0.4s;">
+      <img src="https://img.icons8.com/color/96/discord-new-logo.png" class="mx-auto mb-4 animate-bounce">
+      <h2 class="text-3xl font-bold text-purple-300 mb-2">Discord Bot Hosting</h2>
+      <p class="text-gray-400 mb-4">Keep your bot online 24/7 with zero downtime and instant restarts.</p>
+      <p class="text-3xl font-extrabold text-aqua-400 mb-6">Starting ₹39/mo</p>
+      <a href="bot.html" class="bg-gradient-to-r from-purple-600 to-aqua-500 hover:scale-105 transition px-8 py-3 rounded-full font-semibold">Explore</a>
+    </div>
+
+  </section>
+
+  <!-- 🧾 Footer -->
+  <footer class="py-6 text-center bg-gray-900/80 border-t border-purple-700">
+    <p class="text-gray-400">© 2025 TenterCloud, Inc.</p>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="text-aqua-400 hover:underline">Join our Discord</a>
+  </footer>
+
+  <!-- 📜 Script -->
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
