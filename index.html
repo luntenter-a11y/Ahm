@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TenterCloud</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true">
@@ -12,6 +12,7 @@
       position: relative;
       font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
     nav a::after {
       content: "";
@@ -27,22 +28,25 @@
       width: 100%;
     }
 
-    /* Feature boxes hover */
+    /* Feature box hover */
     .feature-box {
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
     .feature-box:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
     }
 
     /* Button glow */
+    .glow-button {
+      transition: all 0.3s ease;
+    }
     .glow-button:hover {
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
       transform: scale(1.05);
     }
 
-    /* Video background */
+    /* Background video */
     #bg-video {
       position: fixed;
       top: 0;
@@ -62,23 +66,22 @@
 </head>
 <body class="bg-gray-950 text-white font-sans relative overflow-x-hidden">
 
-  <!-- 🎥 Video Background -->
+  <!-- 🎥 Background Video -->
   <video autoplay muted loop id="bg-video">
     <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4">
   </video>
 
   <!-- 🌐 Navbar -->
   <header class="flex justify-between items-center px-6 py-4 bg-purple-900/30 backdrop-blur-md border-b border-purple-700 fixed top-0 left-0 w-full z-20">
-    <a href="index.html" class="flex items-center space-x-2">
+    <a href="index.html" class="flex items-center">
       <img src="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true" alt="Logo" class="w-10 h-10 rounded-full">
-      <span class="text-2xl font-bold text-purple-400"></span>
     </a>
     <nav class="space-x-8 text-gray-300 font-bold tracking-wide hidden md:flex">
       <a href="#features" class="hover:text-purple-400">HOME</a>
       <a href="#plans" class="hover:text-purple-400">PRICING</a>
       <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="hover:text-purple-400">DISCORD</a>
     </nav>
-    <!-- Mobile menu button -->
+    <!-- Mobile Button -->
     <div class="md:hidden">
       <button id="menu-btn" class="focus:outline-none">
         <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" stroke-width="2"
@@ -89,18 +92,20 @@
     </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="bg-gray-900/90 backdrop-blur-md fixed top-16 left-0 w-full px-6 py-4 flex flex-col space-y-4 md:hidden z-10">
-    <a href="#features" class="hover:text-purple-400 font-bold uppercase">FEATURES</a>
+  <!-- 📱 Mobile Menu -->
+  <div id="mobile-menu" class="hidden bg-gray-900/95 backdrop-blur-md fixed top-16 left-0 w-full px-6 py-4 flex flex-col space-y-4 md:hidden z-10">
+    <a href="#features" class="hover:text-purple-400 font-bold uppercase">HOME</a>
     <a href="#plans" class="hover:text-purple-400 font-bold uppercase">PRICING</a>
-    <a href="https://discord.gg/yourinvite" target="_blank" class="hover:text-purple-400 font-bold uppercase">DISCORD</a>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="hover:text-purple-400 font-bold uppercase">DISCORD</a>
   </div>
 
   <!-- 🚀 Hero Section -->
-  <section class="flex flex-col items-center text-center justify-center h-[100vh]">
-    <h2 class="text-5xl md:text-6xl font-bold mb-4 text-purple-400 drop-shadow-lg animate-pulse">Fast. Reliable. Affordable.</h2>
-    <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8">
-      Power up your community with high-performance hosting backed by 24/7 support.
+  <section class="flex flex-col items-center text-center justify-center h-[100vh] px-4">
+    <h2 class="text-5xl md:text-6xl font-extrabold mb-4 text-purple-400 drop-shadow-xl animate-pulse">
+      Fast. Reliable. Affordable.
+    </h2>
+    <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+      Level up your community with ultra-fast servers, 24/7 uptime, and premium performance — built for gamers, by gamers.
     </p>
     <a href="#plans" class="glow-button bg-purple-600 hover:bg-purple-700 px-10 py-4 rounded-full text-lg font-semibold transition">
       View Pricing
@@ -109,75 +114,52 @@
 
   <!-- ⚙️ Features -->
   <section id="features" class="py-24 bg-gray-950/70">
-    <h3 class="text-4xl text-center font-bold text-purple-400 mb-12">Why Choose Us?</h3>
+    <h3 class="text-4xl text-center font-bold text-purple-400 mb-16">Why Choose TenterCloud?</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
 
       <div class="feature-box bg-gray-900 p-8 rounded-2xl border border-purple-700 text-center">
-        <div class="text-purple-400 text-5xl mb-4">🛠️</div>
+        <img src="https://img.icons8.com/fluency/96/server.png" class="mx-auto mb-4">
         <h4 class="text-2xl font-semibold mb-3 text-purple-300">Instant Setup</h4>
-        <p class="text-gray-400">Servers deploy automatically in seconds, ready to play right away.</p>
+        <p class="text-gray-400">Deploy your server in seconds — no waiting, no hassle, ready to play instantly.</p>
       </div>
 
       <div class="feature-box bg-gray-900 p-8 rounded-2xl border border-purple-700 text-center">
-        <div class="text-purple-400 text-5xl mb-4">🚀</div>
-        <h4 class="text-2xl font-semibold mb-3 text-purple-300">Powerful Hardware</h4>
-        <p class="text-gray-400">AMD CPUs & NVMe SSDs for top performance.</p>
+        <img src="https://img.icons8.com/color/96/processor.png" class="mx-auto mb-4">
+        <h4 class="text-2xl font-semibold mb-3 text-purple-300">High-End Hardware</h4>
+        <p class="text-gray-400">AMD EPYC & Intel Platinum CPUs with NVMe storage for blazing performance.</p>
       </div>
 
       <div class="feature-box bg-gray-900 p-8 rounded-2xl border border-purple-700 text-center">
-        <div class="text-purple-400 text-5xl mb-4">💬</div>
-        <h4 class="text-2xl font-semibold mb-3 text-purple-300">24/7 Support</h4>
-        <p class="text-gray-400">Always available on Discord to help you anytime.</p>
+        <img src="https://img.icons8.com/color/96/customer-support.png" class="mx-auto mb-4">
+        <h4 class="text-2xl font-semibold mb-3 text-purple-300">24/7 Discord Support</h4>
+        <p class="text-gray-400">Our expert support team is always available to help — anytime, anywhere.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- 📊 Animated Statistics Section -->
-  <section class="py-24 bg-gray-900/80">
-    <h3 class="text-4xl text-center font-bold text-purple-400 mb-12">Our Stats</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6 text-center">
-
-      <div class="text-purple-400">
-        <p class="text-5xl font-bold counter" data-target="50">0</p>
-        <p class="text-gray-300 mt-2">Servers Online</p>
-      </div>
-
-      <div class="text-purple-400">
-        <p class="text-5xl font-bold counter" data-target="30+">0</p>
-        <p class="text-gray-300 mt-2">Satisfied Clients</p>
-      </div>
-
-      <div class="text-purple-400">
-        <p class="text-5xl font-bold counter" data-target="99.98%">0</p>
-        <p class="text-gray-300 mt-2">Uptime</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 💾 Hosting Plans Preview -->
+  <!-- 💾 Hosting Plans -->
   <section id="plans" class="py-24 bg-gray-950/90">
     <h3 class="text-4xl text-center font-bold text-purple-400 mb-12">Our Hosting Plans</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
 
       <div class="feature-box bg-gray-900 p-8 rounded-2xl text-center border border-purple-700">
         <h4 class="text-2xl font-semibold mb-2 text-purple-300">Minecraft Hosting</h4>
-        <p class="text-gray-400 mb-3">Lag-Free Minecraft Server Hosting</p>
+        <p class="text-gray-400 mb-3">Lag-free Minecraft hosting with one-click setup.</p>
         <p class="text-3xl font-bold mb-6">₹49<span class="text-lg text-gray-400">/month</span></p>
         <a href="/minecraft.html" class="glow-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-lg font-semibold transition">Buy Now</a>
       </div>
 
       <div class="feature-box bg-gray-900 p-8 rounded-2xl text-center border-2 border-purple-600">
         <h4 class="text-2xl font-semibold mb-2 text-purple-300">VPS Hosting</h4>
-        <p class="text-gray-400 mb-3">Best for growing communities</p>
+        <p class="text-gray-400 mb-3">Scale your projects with high-speed VPS instances.</p>
         <p class="text-3xl font-bold mb-6">₹499<span class="text-lg text-gray-400">/month</span></p>
         <a href="/vps.html" class="glow-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-lg font-semibold transition">Buy Now</a>
       </div>
 
       <div class="feature-box bg-gray-900 p-8 rounded-2xl text-center border border-purple-700">
         <h4 class="text-2xl font-semibold mb-2 text-purple-300">Discord Bot Hosting</h4>
-        <p class="text-gray-400 mb-3">Give your bots a powerful home</p>
+        <p class="text-gray-400 mb-3">Keep your bots online 24/7 with no downtime.</p>
         <p class="text-3xl font-bold mb-6">₹49<span class="text-lg text-gray-400">/month</span></p>
         <a href="/bot.html" class="glow-button bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-lg font-semibold transition">Buy Now</a>
       </div>
@@ -188,19 +170,19 @@
   <!-- 🧾 Footer -->
   <footer class="py-6 text-center bg-gray-900/80 border-t border-purple-700">
     <p class="text-gray-400">© 2025 TenterCloud, Inc.</p>
-    <a href="https://discord.gg/yourinvite" target="_blank" class="text-purple-400 hover:underline">Join our Discord</a>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="text-purple-400 hover:underline">Join our Discord</a>
   </footer>
 
-  <!-- Scripts -->
+  <!-- 📜 Script -->
   <script>
-    // Counter animation
+    // Counter Animation (future ready)
     const counters = document.querySelectorAll('.counter');
     counters.forEach(counter => {
       const updateCount = () => {
         const target = +counter.getAttribute('data-target');
         const count = +counter.innerText;
         const increment = target / 200;
-        if(count < target){
+        if (count < target) {
           counter.innerText = Math.ceil(count + increment);
           setTimeout(updateCount, 15);
         } else {
@@ -210,13 +192,13 @@
       updateCount();
     });
 
-    // Mobile menu toggle
+    // Mobile Menu Toggle
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
   </script>
-
 </body>
 </html>
+
