@@ -5,137 +5,227 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Minecraft Hosting — TenterCloud</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true" />
-
   <style>
-    :root{
-      --aqua:#06b6d4;
-      --purple:#a855f7;
-      --card-bg:rgba(10,14,20,0.6);
-      --border:#06b6d450;
+    :root {
+      --aqua: #06b6d4;
+      --purple: #8b5cf6;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --glass: rgba(255, 255, 255, 0.06);
     }
-    body{
-      font-family:"Inter",system-ui;
-      background:radial-gradient(circle at top left,#1a1a2e 0%,#0f172a 60%,#020617 100%);
-      color:#e5f6ff;
-      overflow-x:hidden;
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: #e9f7ff;
+      background: #030613;
+      overflow-x: hidden;
     }
-    .hero-title{
-      font-family:"Press Start 2P",monospace;
-      color:var(--aqua);
-      letter-spacing:1px;
+
+    /* Video background */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0.25;
+      filter: blur(1px);
     }
-    .service-card{
-      background:var(--card-bg);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:1.3rem;
-      transition:all .35s ease;
-      backdrop-filter:blur(6px);
+
+    /* Discord Banner */
+    .discord-banner {
+      background: linear-gradient(90deg, var(--aqua), var(--purple));
+      text-align: center;
+      padding: 1rem;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #001218;
+      letter-spacing: 1px;
+      box-shadow: 0 0 30px rgba(6,182,212,0.3);
+      animation: glow 3s ease-in-out infinite alternate;
     }
-    .service-card:hover{
-      transform:translateY(-10px) scale(1.02);
-      box-shadow:0 0 35px rgba(168,85,247,.25);
-      border-color:var(--aqua);
+
+    @keyframes glow {
+      from { box-shadow: 0 0 20px rgba(139,92,246,0.4); }
+      to { box-shadow: 0 0 40px rgba(6,182,212,0.6); }
     }
-    .plan-name{
-      font-family:"Press Start 2P",monospace;
-      font-size:1rem;
-      color:var(--aqua);
-      margin-bottom:.4rem;
+
+    .hero-title {
+      font-family: "Press Start 2P", monospace;
+      font-size: 1.4rem;
+      color: var(--aqua);
+      text-shadow: 0 0 10px rgba(6,182,212,0.6);
     }
-    .buy-btn{
-      background:linear-gradient(90deg,var(--aqua),var(--purple));
-      color:#fff;
-      padding:.5rem 1rem;
-      border-radius:999px;
-      font-weight:700;
-      transition:.3s;
-      text-decoration:none;
+
+    .tabs .tab-btn {
+      font-weight: 700;
+      text-transform: uppercase;
+      border: 1px solid var(--aqua);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      transition: 0.3s;
+      color: var(--aqua);
     }
-    .buy-btn:hover{
-      box-shadow:0 0 25px rgba(168,85,247,.6);
-      transform:scale(1.05);
+
+    .tabs .tab-btn.active {
+      background: var(--aqua);
+      color: #001218;
+      box-shadow: 0 0 20px rgba(6,182,212,0.4);
+      transform: translateY(-4px);
+    }
+
+    .plan-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(6,182,212,0.15);
+      padding: 1.3rem;
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+      transition: all 0.35s ease;
+      text-align: left;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--aqua);
+      box-shadow: 0 15px 45px rgba(6,182,212,0.25);
+    }
+
+    .plan-name {
+      color: var(--aqua);
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+    }
+
+    .price {
+      font-family: "Press Start 2P", monospace;
+      color: #fff;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--aqua), var(--purple));
+      color: #fff;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.25s;
+    }
+
+    .buy-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(6,182,212,0.5);
     }
   </style>
 </head>
+
 <body>
+  <!-- Background Video -->
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-floating-clouds-4663/1080p.mp4" type="video/mp4">
+  </video>
 
-  <!-- Navbar Include -->
+  <!-- Navbar -->
   <div id="navbar"></div>
-  <script>
-    fetch("navbar.html")
-      .then(res=>res.text())
-      .then(data=>document.getElementById("navbar").innerHTML=data);
-  </script>
 
-  <!-- Notice -->
-  <div class="text-center mt-20 text-sm text-cyan-300 font-semibold">
-    ⚡ Orders are processed through Discord
+  <!-- Discord Banner -->
+  <div class="discord-banner">
+    ⚡ ORDERS ARE PROCESSED THROUGH DISCORD ⚡
   </div>
 
   <!-- Hero -->
-  <section class="text-center py-16 px-5">
-    <h1 class="hero-title text-3xl md:text-4xl mb-4">MINECRAFT HOSTING</h1>
-    <p class="text-gray-300 max-w-2xl mx-auto">
-      Choose your world-tier plan — all servers come with DDoS protection, instant setup, and full control panel access.
-    </p>
+  <section class="text-center mt-16 mb-10">
+    <h1 class="hero-title">MINECRAFT HOSTING PLANS</h1>
+    <p class="mt-3 text-gray-300">Select your perfect plan — choose between <span class="text-[var(--aqua)] font-bold">Budget</span> & <span class="text-[var(--purple)] font-bold">Performance</span>.</p>
   </section>
+
+  <!-- Tabs -->
+  <div class="tabs flex justify-center gap-4 mb-8">
+    <button class="tab-btn active" data-tab="budget">BUDGET</button>
+    <button class="tab-btn" data-tab="performance">PERFORMANCE</button>
+  </div>
 
   <!-- Plans -->
-  <section class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 pb-20">
+  <section class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 pb-20">
 
-    <div class="service-card text-center">
-      <h3 class="plan-name">COAL</h3>
-      <p class="text-gray-400 mb-2">1 vCore • 2GB RAM • 10GB NVMe</p>
-      <p class="text-lg font-bold text-cyan-400 mb-3">₹49/month</p>
-      <a href="https://discord.gg/pbWjbuuMpj" class="buy-btn" target="_blank">Buy via Discord</a>
+    <!-- BUDGET PLANS -->
+    <div class="plan-card budget-tab">
+      <h3 class="plan-name">CREEPER</h3>
+      <p>Intel Xeon • 2GB RAM • 10GB NVMe • 1 vCore</p>
+      <p class="price">₹49 / mo</p>
+      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="buy-btn">Buy Now</a>
     </div>
 
-    <div class="service-card text-center">
-      <h3 class="plan-name">IRON</h3>
-      <p class="text-gray-400 mb-2">2 vCores • 4GB RAM • 20GB NVMe</p>
-      <p class="text-lg font-bold text-cyan-400 mb-3">₹89/month</p>
-      <a href="https://discord.gg/pbWjbuuMpj" class="buy-btn" target="_blank">Buy via Discord</a>
+    <div class="plan-card budget-tab">
+      <h3 class="plan-name">BLAZE</h3>
+      <p>Intel Xeon • 4GB RAM • 20GB NVMe • 2 vCores</p>
+      <p class="price">₹89 / mo</p>
+      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="buy-btn">Buy Now</a>
     </div>
 
-    <div class="service-card text-center">
-      <h3 class="plan-name">GOLD</h3>
-      <p class="text-gray-400 mb-2">3 vCores • 6GB RAM • 30GB NVMe</p>
-      <p class="text-lg font-bold text-cyan-400 mb-3">₹149/month</p>
-      <a href="https://discord.gg/pbWjbuuMpj" class="buy-btn" target="_blank">Buy via Discord</a>
+    <div class="plan-card budget-tab">
+      <h3 class="plan-name">WITHER</h3>
+      <p>Intel Xeon • 8GB RAM • 40GB NVMe • 4 vCores</p>
+      <p class="price">₹159 / mo</p>
+      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="buy-btn">Buy Now</a>
     </div>
 
-    <div class="service-card text-center">
-      <h3 class="plan-name">DIAMOND</h3>
-      <p class="text-gray-400 mb-2">4 vCores • 8GB RAM • 40GB NVMe</p>
-      <p class="text-lg font-bold text-cyan-400 mb-3">₹199/month</p>
-      <a href="https://discord.gg/pbWjbuuMpj" class="buy-btn" target="_blank">Buy via Discord</a>
+    <!-- PERFORMANCE PLANS -->
+    <div class="plan-card performance-tab hidden">
+      <h3 class="plan-name">ENDER</h3>
+      <p>AMD EPYC • 2GB RAM • 10GB NVMe • 1 vCore</p>
+      <p class="price">₹69 / mo</p>
+      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="buy-btn">Buy Now</a>
     </div>
 
-    <div class="service-card text-center">
-      <h3 class="plan-name">EMERALD</h3>
-      <p class="text-gray-400 mb-2">5 vCores • 10GB RAM • 50GB NVMe</p>
-      <p class="text-lg font-bold text-cyan-400 mb-3">₹249/month</p>
-      <a href="https://discord.gg/pbWjbuuMpj" class="buy-btn" target="_blank">Buy via Discord</a>
+    <div class="plan-card performance-tab hidden">
+      <h3 class="plan-name">DRAGON</h3>
+      <p>AMD EPYC • 8GB RAM • 40GB NVMe • 4 vCores</p>
+      <p class="price">₹189 / mo</p>
+      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="buy-btn">Buy Now</a>
     </div>
 
-    <div class="service-card text-center">
-      <h3 class="plan-name">NETHERITE</h3>
-      <p class="text-gray-400 mb-2">6 vCores • 12GB RAM • 80GB NVMe</p>
-      <p class="text-lg font-bold text-cyan-400 mb-3">₹299/month</p>
-      <a href="https://discord.gg/pbWjbuuMpj" class="buy-btn" target="_blank">Buy via Discord</a>
+    <div class="plan-card performance-tab hidden">
+      <h3 class="plan-name">HEROBR</h3>
+      <p>AMD EPYC • 16GB RAM • 80GB NVMe • 6 vCores</p>
+      <p class="price">₹299 / mo</p>
+      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="buy-btn">Buy Now</a>
     </div>
-
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-800">
-    © 2025 TenterCloud — All Rights Reserved
-  </footer>
+  <script>
+    // Load navbar
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("navbar").innerHTML = html);
 
+    // Tab switch logic
+    const tabs = document.querySelectorAll(".tab-btn");
+    const budget = document.querySelectorAll(".budget-tab");
+    const perf = document.querySelectorAll(".performance-tab");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        if (tab.dataset.tab === "budget") {
+          budget.forEach(e => e.classList.remove("hidden"));
+          perf.forEach(e => e.classList.add("hidden"));
+        } else {
+          budget.forEach(e => e.classList.add("hidden"));
+          perf.forEach(e => e.classList.remove("hidden"));
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
