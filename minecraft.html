@@ -24,9 +24,6 @@
       color:#e6eef2;
     }
 
-    /* Navbar placeholder */
-    #navbar-placeholder { }
-
     /* Discord order info */
     .discord-order{
       text-align:center;
@@ -99,7 +96,7 @@
 </head>
 <body class="antialiased">
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR from navbar.html -->
   <div id="navbar-placeholder"></div>
 
   <!-- Discord info -->
@@ -122,111 +119,44 @@
     <section id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-3 pb-20">
 
       <!-- Budget plans -->
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">COAL</h3><span class="tag">2GB</span>
-        </div>
-        <p class="specs">Intel Xeon Platinum • 1 vCore</p>
-        <p class="specs">2GB RAM</p>
-        <p class="specs">10GB NVMe Storage</p>
-        <p class="specs">1Gbps Network • DDoS Protected</p>
-        <div class="price">₹40</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+      <script>
+        const budgetPlans = [
+          {name:"COAL", ram:"2GB", vcore:1, storage:"10GB", price:40},
+          {name:"IRON", ram:"4GB", vcore:2, storage:"20GB", price:80},
+          {name:"GOLD", ram:"6GB", vcore:3, storage:"30GB", price:120},
+          {name:"DIAMOND", ram:"8GB", vcore:4, storage:"40GB", price:200},
+          {name:"EMERALD", ram:"10GB", vcore:4, storage:"50GB", price:250},
+          {name:"LAPIS", ram:"12GB", vcore:5, storage:"60GB", price:300},
+          {name:"REDSTONE", ram:"16GB", vcore:6, storage:"80GB", price:400},
+        ];
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">IRON</h3><span class="tag">4GB</span>
-        </div>
-        <p class="specs">Intel Xeon Platinum • 2 vCores</p>
-        <p class="specs">4GB RAM</p>
-        <p class="specs">20GB NVMe Storage</p>
-        <p class="specs">1Gbps Network • DDoS Protected</p>
-        <div class="price">₹80</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+        const perfPlans = budgetPlans.map(p=>({ ...p, vcore:p.vcore, price:p.price+20, network:"2Gbps"}));
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">GOLD</h3><span class="tag">6GB</span>
-        </div>
-        <p class="specs">Intel Xeon Platinum • 3 vCores</p>
-        <p class="specs">6GB RAM</p>
-        <p class="specs">30GB NVMe Storage</p>
-        <p class="specs">1Gbps Network • DDoS Protected</p>
-        <div class="price">₹120</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+        function renderPlans(plans, tabClass){
+          return plans.map(p => `
+            <article class="plan-card ${tabClass} ${tabClass==='performance-tab'?'hidden':''}">
+              <div class="flex items-baseline justify-between">
+                <h3 class="plan-name">${p.name}</h3><span class="tag">${p.ram}</span>
+              </div>
+              <p class="specs">${tabClass==='budget-tab'?'Intel Xeon Platinum':'AMD EPYC'} • ${p.vcore} vCore</p>
+              <p class="specs">${p.ram} RAM</p>
+              <p class="specs">${p.storage} NVMe Storage</p>
+              <p class="specs">${tabClass==='budget-tab'?'1Gbps':'2Gbps'} Network • DDoS Protected</p>
+              <div class="price">₹${p.price}</div>
+              <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
+            </article>
+          `).join('');
+        }
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">DIAMOND</h3><span class="tag">8GB</span>
-        </div>
-        <p class="specs">Intel Xeon Platinum • 4 vCores</p>
-        <p class="specs">8GB RAM</p>
-        <p class="specs">40GB NVMe Storage</p>
-        <p class="specs">1Gbps Network • DDoS Protected</p>
-        <div class="price">₹200</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">EMERALD</h3><span class="tag">10GB</span>
-        </div>
-        <p class="specs">Intel Xeon Platinum • 4 vCores</p>
-        <p class="specs">10GB RAM</p>
-        <p class="specs">50GB NVMe Storage</p>
-        <p class="specs">1Gbps Network • DDoS Protected</p>
-        <div class="price">₹250</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">LAPIS</h3><span class="tag">12GB</span>
-        </div>
-        <p class="specs">Intel Xeon Platinum • 5 vCores</p>
-        <p class="specs">12GB RAM</p>
-        <p class="specs">60GB NVMe Storage</p>
-        <p class="specs">1Gbps Network • DDoS Protected</p>
-        <div class="price">₹300</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">REDSTONE</h3><span class="tag">16GB</span>
-        </div>
-        <p class="specs">Intel Xeon Platinum • 6 vCores</p>
-        <p class="specs">16GB RAM</p>
-        <p class="specs">80GB NVMe Storage</p>
-        <p class="specs">1Gbps Network • DDoS Protected</p>
-        <div class="price">₹400</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <!-- Performance plans (same names) -->
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">COAL</h3><span class="tag">2GB</span>
-        </div>
-        <p class="specs">AMD EPYC • 1 vCore</p>
-        <p class="specs">2GB RAM</p>
-        <p class="specs">10GB NVMe Storage</p>
-        <p class="specs">2Gbps Network • DDoS Protected</p>
-        <div class="price">₹60</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <!-- repeat IRON, GOLD, DIAMOND, EMERALD, LAPIS, REDSTONE with Performance specs -->
-      <!-- ... continue same as above ... -->
+        document.write(renderPlans(budgetPlans,'budget-tab'));
+        document.write(renderPlans(perfPlans,'performance-tab'));
+      </script>
 
     </section>
   </section>
 
   <script>
-    // Load navbar
+    // Load navbar.html
     fetch('navbar.html')
       .then(res => res.text())
       .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; });
@@ -258,4 +188,3 @@
 
 </body>
 </html>
-
