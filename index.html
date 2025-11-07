@@ -3,65 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TenterCloud — Minecraft Hosting</title>
+  <title>TenterCloud — Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #6b5b95, #00bcd4);
+      background: linear-gradient(135deg, #6b5b95, #06b6d4);
       color: #f0f0f0;
+      overflow-x: hidden;
     }
-    .text-aqua { color: #06b6d4; }
-    .text-purple { color: #8e44ad; }
     a { text-decoration: none; }
+    .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
+    .hero-title { font-size: 3rem; font-weight: 700; color: #06b6d4; }
+    .hero-subtitle { font-size: 1.2rem; color: #e0e0e0; margin-top: 1rem; }
+    .btn-discord { background: #8e44ad; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 700; color: #fff; display: inline-block; margin-top: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .btn-discord:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.25); }
   </style>
 </head>
 <body class="antialiased">
 
   <!-- NAVBAR -->
-  <div id="navbar-container"></div>
+  <div id="navbar-container" class="fixed w-full z-50"></div>
 
   <!-- HERO -->
-  <section class="max-w-6xl mx-auto px-5 text-center py-24">
-    <h1 class="text-5xl md:text-6xl font-bold text-aqua">MINECRAFT HOSTING</h1>
-    <p class="mt-6 text-gray-200 max-w-3xl mx-auto text-lg">
-      Select a plan — Budget or Performance. Click Buy to start — checkout & support on Discord.
+  <section class="max-w-6xl mx-auto px-5 text-center py-32 fade-up">
+    <h1 class="hero-title">MINECRAFT HOSTING</h1>
+    <p class="hero-subtitle">
+      ORDERS ARE PROCESSED THROUGH DISCORD. Select a plan on Minecraft hosting page and join our community for instant support.
     </p>
-    <p class="mt-4 font-bold text-gray-100">ORDERS ARE PROCESSED THROUGH DISCORD</p>
-    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="inline-block mt-8 px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold transition">Join Discord</a>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="btn-discord">Join Discord</a>
   </section>
 
-  <!-- VIEW SERVICES -->
-  <section class="max-w-6xl mx-auto px-5 py-16 text-center">
-    <h2 class="text-4xl font-bold text-purple mb-6">View Services</h2>
-    <p class="text-gray-200 max-w-3xl mx-auto text-lg">
-      We provide high-performance Minecraft servers, fast NVMe storage, DDoS protection, and 24/7 Discord-based support. Experience lag-free gameplay with both Budget and Performance plans.
+  <!-- INFO SECTIONS -->
+  <section class="max-w-6xl mx-auto px-5 py-24 fade-up">
+    <h2 class="text-4xl font-bold text-purple-500 mb-6">View Services</h2>
+    <p class="text-gray-200 text-lg max-w-3xl mx-auto">
+      TenterCloud provides professional Minecraft server hosting with high performance, reliable uptime, and DDoS protection. Explore our plans and choose the best fit for your gaming community.
     </p>
   </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="max-w-6xl mx-auto px-5 py-16 text-center">
-    <h2 class="text-4xl font-bold text-purple mb-6">Why Choose Us?</h2>
-    <ul class="list-disc list-inside text-gray-200 max-w-3xl mx-auto space-y-2 text-lg">
-      <li>Budget & Performance plans to fit your needs</li>
-      <li>Intel Xeon & AMD EPYC high-performance servers</li>
-      <li>1-2 Gbps network with DDoS protection</li>
-      <li>Instant setup and Discord-based support</li>
-      <li>Reliable uptime & fast NVMe storage</li>
-    </ul>
+  <section class="max-w-6xl mx-auto px-5 py-24 fade-up">
+    <h2 class="text-4xl font-bold text-purple-500 mb-6">Why Choose Us?</h2>
+    <p class="text-gray-200 text-lg max-w-3xl mx-auto">
+      With both Budget and Performance plans, Intel Xeon & AMD EPYC servers, and instant Discord-based support, we ensure your Minecraft server runs smoothly and securely.
+    </p>
   </section>
 
   <!-- FOOTER -->
-  <footer class="mt-12 py-6 text-center text-gray-300">
+  <footer class="mt-12 py-6 text-center text-gray-300 fade-up">
     &copy; 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="text-aqua">Join our Discord</a>
   </footer>
 
-  <!-- SCRIPT TO LOAD NAVBAR -->
+  <!-- LOAD NAVBAR.HTML -->
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       const navbarContainer = document.getElementById('navbar-container');
-      if (navbarContainer) {
+      if(navbarContainer){
         try {
           const response = await fetch('/navbar.html');
           const html = await response.text();
@@ -73,7 +72,19 @@
           if (menuBtn && mobileMenu) {
             menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
           }
-        } catch (err) {
+
+          // Trigger animations when in viewport
+          const faders = document.querySelectorAll('.fade-up');
+          const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+          const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if(!entry.isIntersecting) return;
+              entry.target.classList.add('show');
+              observer.unobserve(entry.target);
+            });
+          }, appearOptions);
+          faders.forEach(fader => appearOnScroll.observe(fader));
+        } catch(err){
           console.error('Failed to load navbar:', err);
         }
       }
