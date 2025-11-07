@@ -1,63 +1,83 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Select the container in your index.html where homepage content goes
-  const homepageContainer = document.getElementById('homepage-content');
-  if (!homepageContainer) return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TenterCloud — Minecraft Hosting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #6b5b95, #00bcd4);
+      color: #f0f0f0;
+    }
+    .text-aqua { color: #06b6d4; }
+    .text-purple { color: #8e44ad; }
+    a { text-decoration: none; }
+  </style>
+</head>
+<body class="antialiased">
 
-  // ---------- Hero Section ----------
-  const heroHtml = `
-    <section class="max-w-6xl mx-auto px-5 text-center pt-28 pb-16">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-[#06b6d4]">WELCOME TO TENTERCLOUD</h1>
-      <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
-        The best hosting for Minecraft and other services. Fast, reliable, and secure.
-      </p>
-      <a href="#services" class="mt-6 inline-block px-6 py-3 bg-[#06b6d4] hover:bg-purple-600 text-black font-bold rounded">
-        View Services
-      </a>
-    </section>
-  `;
+  <!-- NAVBAR -->
+  <div id="navbar-container"></div>
 
-  // ---------- Services Section ----------
-  const servicesHtml = `
-    <section id="services" class="max-w-6xl mx-auto px-5 py-16 text-center">
-      <h2 class="text-3xl font-bold text-white mb-8">Our Services</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
-          <h3 class="font-bold text-white text-xl mb-2">Minecraft Hosting</h3>
-          <p class="text-gray-300">Reliable and fast servers for all versions of Minecraft.</p>
-        </div>
-        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
-          <h3 class="font-bold text-white text-xl mb-2">Discord Bots Hosting</h3>
-          <p class="text-gray-300">Host your bots with high uptime and low latency.</p>
-        </div>
-        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
-          <h3 class="font-bold text-white text-xl mb-2">Web Hosting</h3>
-          <p class="text-gray-300">Fast and secure hosting for your websites and apps.</p>
-        </div>
-      </div>
-    </section>
-  `;
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-5 text-center py-24">
+    <h1 class="text-5xl md:text-6xl font-bold text-aqua">MINECRAFT HOSTING</h1>
+    <p class="mt-6 text-gray-200 max-w-3xl mx-auto text-lg">
+      Select a plan — Budget or Performance. Click Buy to start — checkout & support on Discord.
+    </p>
+    <p class="mt-4 font-bold text-gray-100">ORDERS ARE PROCESSED THROUGH DISCORD</p>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="inline-block mt-8 px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold transition">Join Discord</a>
+  </section>
 
-  // ---------- Why Choose Us Section ----------
-  const whyHtml = `
-    <section id="why" class="max-w-6xl mx-auto px-5 py-16 text-center">
-      <h2 class="text-3xl font-bold text-white mb-8">Why Choose Us?</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
-          <h3 class="font-bold text-white text-xl mb-2">Performance</h3>
-          <p class="text-gray-300">High-speed servers with top-tier hardware.</p>
-        </div>
-        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
-          <h3 class="font-bold text-white text-xl mb-2">Security</h3>
-          <p class="text-gray-300">DDoS protected network and secure infrastructure.</p>
-        </div>
-        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
-          <h3 class="font-bold text-white text-xl mb-2">Support</h3>
-          <p class="text-gray-300">24/7 support via Discord to help you anytime.</p>
-        </div>
-      </div>
-    </section>
-  `;
+  <!-- VIEW SERVICES -->
+  <section class="max-w-6xl mx-auto px-5 py-16 text-center">
+    <h2 class="text-4xl font-bold text-purple mb-6">View Services</h2>
+    <p class="text-gray-200 max-w-3xl mx-auto text-lg">
+      We provide high-performance Minecraft servers, fast NVMe storage, DDoS protection, and 24/7 Discord-based support. Experience lag-free gameplay with both Budget and Performance plans.
+    </p>
+  </section>
 
-  // ---------- Insert all sections ----------
-  homepageContainer.innerHTML = heroHtml + servicesHtml + whyHtml;
-});
+  <!-- WHY CHOOSE US -->
+  <section class="max-w-6xl mx-auto px-5 py-16 text-center">
+    <h2 class="text-4xl font-bold text-purple mb-6">Why Choose Us?</h2>
+    <ul class="list-disc list-inside text-gray-200 max-w-3xl mx-auto space-y-2 text-lg">
+      <li>Budget & Performance plans to fit your needs</li>
+      <li>Intel Xeon & AMD EPYC high-performance servers</li>
+      <li>1-2 Gbps network with DDoS protection</li>
+      <li>Instant setup and Discord-based support</li>
+      <li>Reliable uptime & fast NVMe storage</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-12 py-6 text-center text-gray-300">
+    &copy; 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="text-aqua">Join our Discord</a>
+  </footer>
+
+  <!-- SCRIPT TO LOAD NAVBAR -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const navbarContainer = document.getElementById('navbar-container');
+      if (navbarContainer) {
+        try {
+          const response = await fetch('/navbar.html');
+          const html = await response.text();
+          navbarContainer.innerHTML = html;
+
+          // Mobile menu toggle
+          const menuBtn = document.getElementById('menu-btn');
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+          }
+        } catch (err) {
+          console.error('Failed to load navbar:', err);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
