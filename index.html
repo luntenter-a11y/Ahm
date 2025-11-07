@@ -3,213 +3,205 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TenterCloud | Home</title>
-
-  <!-- ✅ Fonts + Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <title>Tenter Cloud | Premium Hosting</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ---------- GLOBAL RESET ---------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
-    body, html {
-      height: 100%;
+    body {
+      color: #fff;
       overflow-x: hidden;
-      background-color: #0b0014;
-      color: white;
+      background-color: #0b0018;
     }
 
-    /* ---------- BACKGROUND VIDEO ---------- */
-    .bg-video {
+    /* ==== Background Video ==== */
+    video.bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      filter: brightness(0.35) blur(1px);
+    }
+
+    /* ==== Navbar via Object ==== */
+    object.navbar-object {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      opacity: 0.5;
-      filter: brightness(0.6);
+      height: 80px;
+      border: none;
+      z-index: 999;
+      pointer-events: none;
     }
 
-    /* ---------- HERO SECTION ---------- */
+    /* ==== Hero Section ==== */
     .hero {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
+      color: #fff;
       padding: 0 20px;
-      background: linear-gradient(180deg, rgba(43,0,85,0.6), rgba(0,0,0,0.85));
-      animation: fadeIn 2s ease;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .hero h1 {
-      font-size: 3.8rem;
-      font-weight: 800;
-      text-shadow: 0 0 25px #a020f0;
-      animation: slideDown 1.5s ease;
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #9b5eff, #00eaff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(155, 94, 255, 0.7);
+      animation: floatUp 1.5s ease-in-out;
     }
 
     .hero p {
+      margin-top: 10px;
+      color: #d3d3d3;
       font-size: 1.2rem;
-      margin: 20px 0 35px;
-      color: #e0e0ff;
-      max-width: 700px;
-      animation: fadeInUp 2s ease;
     }
 
-    .hero a {
-      background: linear-gradient(90deg, #8b00ff, #00ffff);
-      padding: 14px 38px;
-      border-radius: 40px;
-      color: white;
+    .btn {
+      margin-top: 25px;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #8f4aff, #4a9fff);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.4s ease;
-      box-shadow: 0 0 15px #8b00ff;
-      animation: pulse 3s infinite;
     }
 
-    .hero a:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 25px #00ffff;
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 15px #8f4aff;
     }
 
-    /* ---------- WHY CHOOSE US ---------- */
-    .why-us {
+    /* ==== Why Choose Us ==== */
+    .why-choose {
       padding: 100px 20px;
       text-align: center;
-      background: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(43,0,85,0.7));
+      background: rgba(15, 0, 30, 0.6);
+      backdrop-filter: blur(5px);
+      margin-top: -100px;
     }
 
-    .why-us h2 {
-      font-size: 2.8rem;
+    .why-choose h2 {
+      font-size: 2.5rem;
+      color: #fff;
       margin-bottom: 50px;
-      text-shadow: 0 0 10px #00ffff;
-      animation: fadeIn 1.5s ease;
+      text-shadow: 0 0 25px #9b5eff;
     }
 
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
     }
 
-    .why-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 30px;
-      backdrop-filter: blur(8px);
-      transition: 0.4s ease;
-      animation: floatUp 2s ease;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .feature {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 25px;
+      width: 280px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(155, 94, 255, 0.2);
     }
 
-    .why-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 0 25px #8b00ff;
+    .feature:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px #9b5eff;
     }
 
-    .why-card h3 {
-      color: #00ffff;
-      margin-bottom: 15px;
-      font-size: 1.4rem;
+    .feature i {
+      font-size: 2rem;
+      color: #9b5eff;
+      margin-bottom: 10px;
     }
 
-    .why-card p {
-      color: #ddd;
-      font-size: 1rem;
-      line-height: 1.5;
+    .feature h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #fff;
     }
 
-    /* ---------- FOOTER ---------- */
-    footer {
-      text-align: center;
-      padding: 35px 10px;
-      font-size: 0.9rem;
-      background: rgba(0,0,0,0.85);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      letter-spacing: 1px;
+    .feature p {
+      font-size: 0.95rem;
+      color: #ccc;
     }
 
-    /* ---------- ANIMATIONS ---------- */
-    @keyframes fadeIn { 0%{opacity:0;} 100%{opacity:1;} }
-    @keyframes fadeInUp { 0%{opacity:0; transform:translateY(30px);} 100%{opacity:1; transform:translateY(0);} }
-    @keyframes slideDown { 0%{opacity:0; transform:translateY(-40px);} 100%{opacity:1; transform:translateY(0);} }
-    @keyframes floatUp { 0%{opacity:0; transform:translateY(20px);} 100%{opacity:1; transform:translateY(0);} }
-    @keyframes pulse { 0%,100%{box-shadow:0 0 20px #8b00ff;} 50%{box-shadow:0 0 30px #00ffff;} }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
-
 <body>
-  <!-- 🔥 BACKGROUND VIDEO -->
+
+  <!-- 🔥 Background Video -->
   <video autoplay muted loop playsinline class="bg-video">
-    <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4" />
+    <source src="motionbg.mp4" type="video/mp4" />
   </video>
 
-  <!-- 🧭 NAVBAR (loaded dynamically) -->
-  <div id="navbar-container"></div>
+  <!-- 🟣 Navbar -->
+  <object data="navbar.html" type="text/html" class="navbar-object"></object>
 
-  <!-- 🌟 HERO -->
+  <!-- 💎 Hero Section -->
   <section class="hero">
-    <h1>Welcome to <span style="color:#00ffff;">TenterCloud</span></h1>
-    <p>Experience blazing-fast game hosting powered by high-performance hardware and ultra-low latency servers.</p>
-    <a href="services.html">View Services</a>
+    <h1>Tenter Cloud</h1>
+    <p>Next-Gen Hosting for Minecraft, Bots & More ⚡</p>
+    <a href="services.html" class="btn">View Services</a>
   </section>
 
-  <!-- 💠 WHY CHOOSE US -->
-  <section class="why-us" id="why">
+  <!-- 🌌 Why Choose Us -->
+  <section class="why-choose">
     <h2>Why Choose Us?</h2>
-    <div class="why-grid">
-      <div class="why-card">
-        <h3>⚡ Ultra-Fast Performance</h3>
-        <p>Our NVMe Gen4 SSDs and DDR4 RAM ensure maximum speed and zero lag for every game session.</p>
+    <div class="features">
+      <div class="feature">
+        <i class="fa-solid fa-bolt"></i>
+        <h3>Lightning Performance</h3>
+        <p>Super-fast servers powered by NVMe & DDoS Protection.</p>
       </div>
-      <div class="why-card">
-        <h3>🛡️ DDoS Protection</h3>
-        <p>Stay safe with enterprise-grade mitigation and continuous network monitoring.</p>
+
+      <div class="feature">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Secure & Reliable</h3>
+        <p>24/7 uptime monitoring with military-grade network security.</p>
       </div>
-      <div class="why-card">
-        <h3>💬 24/7 Discord Support</h3>
-        <p>Our team is always active to assist you instantly through our Discord community.</p>
+
+      <div class="feature">
+        <i class="fa-solid fa-cloud"></i>
+        <h3>Easy Management</h3>
+        <p>Control panel built for gamers and creators alike.</p>
       </div>
-      <div class="why-card">
-        <h3>🚀 Instant Deployment</h3>
-        <p>Your server is online within seconds after payment—no waiting, no setup delay.</p>
+
+      <div class="feature">
+        <i class="fa-solid fa-headset"></i>
+        <h3>Support That Cares</h3>
+        <p>Friendly Discord-based support that’s actually human.</p>
       </div>
     </div>
   </section>
-
-  <!-- ⚫ FOOTER -->
-  <footer>
-    © 2025 TenterCloud • All Rights Reserved
-  </footer>
-
-  <script>
-    // ✅ Dynamically load navbar.html
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("navbar-container").innerHTML = data;
-
-        // 🧩 Re-run navbar script if present
-        const scriptMatch = data.match(/<script>([\s\S]*?)<\/script>/);
-        if (scriptMatch) {
-          const script = document.createElement("script");
-          script.textContent = scriptMatch[1];
-          document.body.appendChild(script);
-        }
-      });
-  </script>
 </body>
 </html>
