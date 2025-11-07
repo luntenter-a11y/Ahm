@@ -11,12 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
       </a>
 
       <nav class="hidden md:flex items-center space-x-8">
-        <a href="index.html">HOME</a>
-        <a href="#plans">PRICING</a>
-        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" rel="noopener">DISCORD</a>
+        <a href="index.html" class="font-bold text-white hover:text-[#06b6d4]">HOME</a>
+        <a href="#plans" class="font-bold text-white hover:text-[#06b6d4]">PRICING</a>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="font-bold text-white hover:text-[#06b6d4]">DISCORD</a>
       </nav>
 
-      <!-- mobile menu -->
       <div class="md:hidden">
         <button id="menu-btn" class="p-1">
           <svg class="w-8 h-8 text-[#06b6d4]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- Hero ----------
   const heroHtml = `
   <section class="max-w-6xl mx-auto px-5 text-center pt-28 pb-10">
-    <h1 class="text-3xl md:text-4xl font-extrabold text-[#06b6d4]">MINECRAFT HOSTING</h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-[#06b6d4]">MINECRAFT HOSTING</h1>
     <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
       Select a plan — <span class="text-[#06b6d4] font-bold">Budget</span> or <span class="text-[#06b6d4] font-bold">Performance</span>. Click Buy to start — checkout & support on Discord.
     </p>
@@ -68,25 +67,25 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const renderPlan = (plan, type) => `
-      <article class="plan-card ${type}-tab ${type==='performance'?'hidden':''}">
-        <div class="flex items-baseline justify-between">
-          <h3 class="plan-name">${plan.name}</h3>
-          <span class="tag">${plan.ram}</span>
+      <article class="plan-card ${type}-tab ${type==='performance'?'hidden':''} border border-gray-700 rounded-xl p-4 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20">
+        <div class="flex items-baseline justify-between mb-2">
+          <h3 class="plan-name font-bold text-white text-lg">${plan.name}</h3>
+          <span class="tag text-gray-300 font-medium">${plan.ram}</span>
         </div>
-        <p class="specs">${type==='budget'?'Intel Xeon Platinum':'AMD EPYC 7003'} • ${plan.vCores} vCore${plan.vCores>1?'s':''} @ ${plan.speed}GHz</p>
-        <p class="specs">${plan.ram} DDR4 RAM</p>
-        <p class="specs">${plan.storage}GB NVMe Gen4</p>
-        <p class="specs">1 Gbps Network • DDoS Protected</p>
-        <div class="price">₹${plan.price} <span class="text-gray-400 text-sm">/ month</span></div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
+        <p class="specs text-gray-300">${type==='budget'?'Intel Xeon Platinum':'AMD EPYC 7003'} • ${plan.vCores} vCore${plan.vCores>1?'s':''} @ ${plan.speed}GHz</p>
+        <p class="specs text-gray-300">${plan.ram} DDR4 RAM</p>
+        <p class="specs text-gray-300">${plan.storage}GB NVMe Gen4</p>
+        <p class="specs text-gray-300">1 Gbps Network • DDoS Protected</p>
+        <div class="price text-white font-bold text-xl mt-2">₹${plan.price} <span class="text-gray-400 text-sm">/ month</span></div>
+        <a class="buy-btn mt-3 inline-block px-4 py-2 bg-[#06b6d4] hover:bg-purple-600 rounded font-bold text-black" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
       </article>
     `;
 
     return `
     <section class="max-w-6xl mx-auto px-5">
-      <div class="tabs flex justify-center gap-4 mb-8">
-        <button class="tab-btn active" data-tab="budget">BUDGET</button>
-        <button class="tab-btn" data-tab="performance">PERFORMANCE</button>
+      <div class="tabs flex justify-center gap-4 mb-8 mt-4">
+        <button class="tab-btn active px-4 py-2 bg-[#06b6d4] rounded text-black font-bold" data-tab="budget">BUDGET</button>
+        <button class="tab-btn px-4 py-2 bg-purple-600 rounded text-white font-bold" data-tab="performance">PERFORMANCE</button>
       </div>
 
       <section id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-3 pb-20">
@@ -99,12 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- FOOTER ----------
   const footerHtml = `
-    <footer class="mt-6 pb-12">
-      <div class="max-w-6xl mx-auto px-5 text-center text-gray-400">
-        <p>© 2025 TenterCloud, Inc. • 
-          <a href="https://discord.gg/pbWjbuuMpj" class="text-[#06b6d4]" target="_blank">Join our Discord</a>
-        </p>
-      </div>
+    <footer class="mt-6 pb-12 text-center text-gray-400">
+      <p>© 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" class="text-[#06b6d4]" target="_blank">Join our Discord</a></p>
     </footer>
   `;
 
@@ -139,4 +134,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-
