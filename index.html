@@ -1,60 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Minecraft Hosting — TenterCloud</title>
 
-  <!-- Fonts: bold for headings, Inter for body -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root{
+    :root {
       --aqua: #06b6d4;
       --aqua-soft: rgba(6,182,212,0.16);
       --aqua-glow: rgba(6,182,212,0.28);
       --card-bg: rgba(8,12,16,0.6);
-      --glass: rgba(255,255,255,0.02);
     }
 
-    body{
+    body {
       font-family: "Inter", sans-serif;
-      background: #030613;
-      color:#e6eef2;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      margin:0;
-      padding:0;
+      background-color: #030613;
+      color: #e6eef2;
     }
 
-    /* Plan tabs */
-    .tabs .tab-btn{
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.9px;
-      color:var(--aqua);
-      border:1px solid rgba(6,182,212,0.14);
-      background:transparent;
-      padding:.62rem 1.15rem;
-      border-radius:999px;
-      transition: all .28s ease;
-      cursor:pointer;
-    }
-    .tabs .tab-btn.active{
-      background:var(--aqua);
-      color:#001217;
-      box-shadow: 0 10px 40px var(--aqua-glow);
-      transform: translateY(-4px);
-    }
-
-    /* Plan cards */
-    .plan-card{
+    /* Plans */
+    .plan-card {
       background: var(--card-bg);
-      border-radius:12px;
+      border-radius: 12px;
       border: 1px solid rgba(6,182,212,0.06);
-      padding:1.1rem;
+      padding: 1.1rem;
       transition: transform .36s cubic-bezier(.2,.9,.3,1), box-shadow .36s;
       backdrop-filter: blur(8px);
     }
@@ -65,9 +40,8 @@
     }
     .plan-name{
       color: var(--aqua);
-      font-weight:900;
-      letter-spacing: .6px;
-      font-size: 1.02rem;
+      font-weight:800;
+      font-size:1.05rem;
     }
     .specs{ color:#b6cfe0; margin:.28rem 0; font-size:.95rem; }
     .price{ font-weight:900; font-size:1.28rem; margin:.5rem 0; color:#ffffff; }
@@ -84,183 +58,128 @@
     }
     .buy-btn:hover{ transform: translateY(-4px); box-shadow: 0 26px 70px var(--aqua-glow); }
 
-    .discord-notice{
-      font-weight:bold;
+    /* Tabs */
+    .tabs .tab-btn{
+      font-weight:800;
+      color: var(--aqua);
+      border:1px solid rgba(6,182,212,0.14);
+      background:transparent;
+      padding:.62rem 1.15rem;
+      border-radius:999px;
+      transition: all .28s ease;
+    }
+    .tabs .tab-btn.active{
+      background: var(--aqua);
+      color:#001217;
+      box-shadow: 0 10px 40px var(--aqua-glow);
+      transform: translateY(-4px);
+    }
+
+    /* ORDERS info */
+    .orders-info {
       text-align:center;
-      color:var(--aqua);
-      margin-bottom:1.5rem;
+      font-weight:bold;
+      color: var(--aqua);
+      margin: 1rem 0;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 800px){
+      .plan-name{ font-size: 1rem; }
+      .price{ font-size: 1.1rem; }
     }
   </style>
 </head>
-<body>
+<body class="antialiased">
 
-  <!-- Navbar include -->
+  <!-- NAVBAR PLACEHOLDER -->
   <div id="navbar-placeholder"></div>
-  <script>
-    fetch('navbar.html')
-      .then(res => res.text())
-      .then(html => document.getElementById('navbar-placeholder').innerHTML = html);
-  </script>
 
-  <!-- Tabs -->
-  <div class="max-w-6xl mx-auto px-5 py-8">
-    <div class="tabs flex justify-center gap-4 mb-4">
+  <!-- ORDERS INFO -->
+  <div class="orders-info">
+    ORDERS ARE PROCESSED THROUGH DISCORD
+  </div>
+
+  <main class="pt-8 max-w-6xl mx-auto px-5">
+
+    <!-- Tabs -->
+    <div class="tabs flex justify-center gap-4 mb-8">
       <button class="tab-btn active" data-tab="budget">BUDGET</button>
       <button class="tab-btn" data-tab="performance">PERFORMANCE</button>
     </div>
 
-    <!-- Discord notice -->
-    <div class="discord-notice">ORDERS ARE PROCESSED THROUGH DISCORD</div>
+    <!-- Plans Grid -->
+    <section id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-3 pb-20">
 
-    <!-- Plans grid -->
-    <div id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-3 pb-20">
+      <!-- BUDGET Plans -->
+      <script>
+        const budgetPlans = [
+          {name:"WOOD", ram:"2GB", cpu:"1 vCore @ 3.5GHz", storage:"10GB NVMe", price:"₹40"},
+          {name:"STONE", ram:"4GB", cpu:"2 vCores @ 3.5GHz", storage:"20GB NVMe", price:"₹80"},
+          {name:"IRON", ram:"6GB", cpu:"3 vCores @ 3.6GHz", storage:"30GB NVMe", price:"₹125"},
+          {name:"GOLD", ram:"8GB", cpu:"4 vCores @ 3.7GHz", storage:"40GB NVMe", price:"₹200"},
+          {name:"DIAMOND", ram:"10GB", cpu:"4 vCores @ 3.8GHz", storage:"50GB NVMe", price:"₹250"},
+          {name:"EMERALD", ram:"12GB", cpu:"5 vCores @ 3.8GHz", storage:"60GB NVMe", price:"₹300"},
+          {name:"NETHERITE", ram:"16GB", cpu:"6 vCores @ 3.9GHz", storage:"80GB NVMe", price:"₹400"}
+        ];
 
-      <!-- BUDGET PLANS -->
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">COAL</h3><span class="specs">2GB</span></div>
-        <p class="specs">Intel Xeon • 1 vCore</p>
-        <p class="specs">2GB RAM</p>
-        <p class="specs">10GB NVMe</p>
-        <p class="specs">1 Gbps • DDoS Protected</p>
-        <div class="price">₹40 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+        const perfPlans = [
+          {name:"WOOD", ram:"2GB", cpu:"1 vCore @ 3.8GHz", storage:"10GB NVMe", price:"₹60"},
+          {name:"STONE", ram:"4GB", cpu:"2 vCores @ 3.8GHz", storage:"20GB NVMe", price:"₹100"},
+          {name:"IRON", ram:"6GB", cpu:"3 vCores @ 3.9GHz", storage:"30GB NVMe", price:"₹150"},
+          {name:"GOLD", ram:"8GB", cpu:"4 vCores @ 3.95GHz", storage:"40GB NVMe", price:"₹250"},
+          {name:"DIAMOND", ram:"10GB", cpu:"4 vCores @ 4.0GHz", storage:"50GB NVMe", price:"₹350"},
+          {name:"EMERALD", ram:"12GB", cpu:"5 vCores @ 4.0GHz", storage:"60GB NVMe", price:"₹450"},
+          {name:"NETHERITE", ram:"16GB", cpu:"6 vCores @ 4.1GHz", storage:"80GB NVMe", price:"₹500"}
+        ];
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">IRON</h3><span class="specs">4GB</span></div>
-        <p class="specs">Intel Xeon • 2 vCores</p>
-        <p class="specs">4GB RAM</p>
-        <p class="specs">20GB NVMe</p>
-        <p class="specs">1 Gbps • DDoS Protected</p>
-        <div class="price">₹80 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+        function renderPlans(plans, tabClass){
+          return plans.map(p=>`
+            <article class="plan-card ${tabClass}">
+              <div class="flex items-baseline justify-between">
+                <h3 class="plan-name">${p.name}</h3>
+                <span class="tag">${p.ram}</span>
+              </div>
+              <p class="specs">${p.cpu}</p>
+              <p class="specs">${p.ram} DDR4 RAM</p>
+              <p class="specs">${p.storage}</p>
+              <p class="specs">1 Gbps Network • DDoS Protected</p>
+              <div class="price">${p.price} <span class="text-gray-400 text-sm">/ month</span></div>
+              <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
+            </article>
+          `).join('');
+        }
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">GOLD</h3><span class="specs">6GB</span></div>
-        <p class="specs">Intel Xeon • 3 vCores</p>
-        <p class="specs">6GB RAM</p>
-        <p class="specs">30GB NVMe</p>
-        <p class="specs">1 Gbps • DDoS Protected</p>
-        <div class="price">₹125 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+        document.write(renderPlans(budgetPlans,'budget-tab'));
+        document.write(renderPlans(perfPlans,'performance-tab hidden'));
+      </script>
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">DIAMOND</h3><span class="specs">8GB</span></div>
-        <p class="specs">Intel Xeon • 4 vCores</p>
-        <p class="specs">8GB RAM</p>
-        <p class="specs">40GB NVMe</p>
-        <p class="specs">1 Gbps • DDoS Protected</p>
-        <div class="price">₹200 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+  </main>
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">EMERALD</h3><span class="specs">10GB</span></div>
-        <p class="specs">Intel Xeon • 4 vCores</p>
-        <p class="specs">10GB RAM</p>
-        <p class="specs">50GB NVMe</p>
-        <p class="specs">1 Gbps • DDoS Protected</p>
-        <div class="price">₹250 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+  <!-- Footer -->
+  <footer class="mt-6 pb-12 text-center text-gray-400">
+    <p>© 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" class="text-[var(--aqua)]" target="_blank">Join our Discord</a></p>
+  </footer>
 
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">REDSTONE</h3><span class="specs">12GB</span></div>
-        <p class="specs">Intel Xeon • 5 vCores</p>
-        <p class="specs">12GB RAM</p>
-        <p class="specs">60GB NVMe</p>
-        <p class="specs">1 Gbps • DDoS Protected</p>
-        <div class="price">₹300 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card budget-tab">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">LAPIS</h3><span class="specs">16GB</span></div>
-        <p class="specs">Intel Xeon • 6 vCores</p>
-        <p class="specs">16GB RAM</p>
-        <p class="specs">80GB NVMe</p>
-        <p class="specs">1 Gbps • DDoS Protected</p>
-        <div class="price">₹400 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <!-- PERFORMANCE PLANS -->
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">OBSIDIAN</h3><span class="specs">2GB</span></div>
-        <p class="specs">AMD EPYC • 1 vCore</p>
-        <p class="specs">2GB RAM</p>
-        <p class="specs">10GB NVMe</p>
-        <p class="specs">2 Gbps • DDoS Protected</p>
-        <div class="price">₹60 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">QUARTZ</h3><span class="specs">4GB</span></div>
-        <p class="specs">AMD EPYC • 2 vCores</p>
-        <p class="specs">4GB RAM</p>
-        <p class="specs">20GB NVMe</p>
-        <p class="specs">2 Gbps • DDoS Protected</p>
-        <div class="price">₹100 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">NETHERITE</h3><span class="specs">6GB</span></div>
-        <p class="specs">AMD EPYC • 3 vCores</p>
-        <p class="specs">6GB RAM</p>
-        <p class="specs">30GB NVMe</p>
-        <p class="specs">2 Gbps • DDoS Protected</p>
-        <div class="price">₹150 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">PRISMARINE</h3><span class="specs">8GB</span></div>
-        <p class="specs">AMD EPYC • 4 vCores</p>
-        <p class="specs">8GB RAM</p>
-        <p class="specs">40GB NVMe</p>
-        <p class="specs">2 Gbps • DDoS Protected</p>
-        <div class="price">₹250 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">REDSTONE_BLOCK</h3><span class="specs">10GB</span></div>
-        <p class="specs">AMD EPYC • 4 vCores</p>
-        <p class="specs">10GB RAM</p>
-        <p class="specs">50GB NVMe</p>
-        <p class="specs">2 Gbps • DDoS Protected</p>
-        <div class="price">₹350 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">DIAMOND_BLOCK</h3><span class="specs">12GB</span></div>
-        <p class="specs">AMD EPYC • 5 vCores</p>
-        <p class="specs">12GB RAM</p>
-        <p class="specs">60GB NVMe</p>
-        <p class="specs">2 Gbps • DDoS Protected</p>
-        <div class="price">₹450 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-      <article class="plan-card performance-tab hidden">
-        <div class="flex items-baseline justify-between"><h3 class="plan-name">EMERALD_BLOCK</h3><span class="specs">16GB</span></div>
-        <p class="specs">AMD EPYC • 6 vCores</p>
-        <p class="specs">16GB RAM</p>
-        <p class="specs">80GB NVMe</p>
-        <p class="specs">2 Gbps • DDoS Protected</p>
-        <div class="price">₹500 / month</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-
-    </div>
-  </div>
-
+  <!-- Scripts -->
   <script>
+    // Load navbar.html with animations
+    fetch('navbar.html')
+      .then(res=>res.text())
+      .then(html=>{
+        document.getElementById('navbar-placeholder').innerHTML = html;
+
+        // Run navbar scripts
+        const scripts = document.getElementById('navbar-placeholder').querySelectorAll('script');
+        scripts.forEach(s=>{
+          const ns = document.createElement('script');
+          if(s.src) ns.src=s.src;
+          else ns.textContent = s.textContent;
+          document.body.appendChild(ns);
+        });
+      });
+
+    // Tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const budgetTabs = document.querySelectorAll('.budget-tab');
     const perfTabs = document.querySelectorAll('.performance-tab');
@@ -269,17 +188,20 @@
       btn.addEventListener('click', ()=>{
         tabBtns.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        const tab = btn.dataset.tab;
-        if(tab==='performance'){
-          budgetTabs.forEach(p => p.classList.add('hidden'));
-          perfTabs.forEach(p => p.classList.remove('hidden'));
+        if(btn.dataset.tab==='performance'){
+          budgetTabs.forEach(p=>p.classList.add('hidden'));
+          perfTabs.forEach(p=>p.classList.remove('hidden'));
         } else {
-          budgetTabs.forEach(p => p.classList.remove('hidden'));
-          perfTabs.forEach(p => p.classList.add('hidden'));
+          budgetTabs.forEach(p=>p.classList.remove('hidden'));
+          perfTabs.forEach(p=>p.classList.add('hidden'));
         }
       });
     });
+
+    // Default: show budget
+    budgetTabs.forEach(p=>p.classList.remove('hidden'));
+    perfTabs.forEach(p=>p.classList.add('hidden'));
   </script>
+
 </body>
 </html>
-
