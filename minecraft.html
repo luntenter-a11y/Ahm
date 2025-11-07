@@ -1,200 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Minecraft Hosting — TenterCloud</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TenterCloud | Minecraft Hosting</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <meta name="description" content="TenterCloud Minecraft hosting — Budget (Intel Xeon Platinum) & Performance (AMD EPYC) plans" />
-  <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true" />
-
+  <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true">
   <style>
-    :root{
-      --aqua:#06b6d4;
-      --aqua-glow:rgba(6,182,212,0.3);
-      --card-bg:rgba(8,12,16,0.6);
+    @import url('https://fonts.cdnfonts.com/css/minecraft-3');
+
+    /* Navbar underline */
+    nav a {
+      position: relative;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    body{
-      background:#0a0313 radial-gradient(circle at 50% 0%,rgba(115,0,255,0.18),transparent 70%);
-      color:#e6eef2;
-      font-family:"Inter",sans-serif;
-      overflow-x:hidden;
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #06b6d4, #a855f7);
+      transition: width 0.3s ease;
     }
-    .hero-title{
-      font-family:"Press Start 2P",monospace;
-      letter-spacing:1px;
-      color:var(--aqua);
+    nav a:hover::after {
+      width: 100%;
     }
-    .plan-card{
-      background:var(--card-bg);
-      border:1px solid rgba(6,182,212,0.08);
-      border-radius:14px;
-      padding:1.2rem;
-      transition:.3s;
-      backdrop-filter:blur(6px);
+
+    /* Glow button */
+    .glow-button {
+      background: linear-gradient(90deg, #06b6d4, #a855f7);
+      transition: all 0.3s ease;
     }
-    .plan-card:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 15px 40px var(--aqua-glow);
-      border-color:var(--aqua);
+    .glow-button:hover {
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
+      transform: scale(1.05);
     }
-    .plan-name{
-      font-family:"Press Start 2P",monospace;
-      font-size:1rem;
-      color:var(--aqua);
+
+    /* Feature boxes */
+    .plan-box {
+      transition: all 0.4s ease;
+      border: 1px solid rgba(168, 85, 247, 0.4);
     }
-    .price{
-      font-weight:900;
-      font-size:1.3rem;
-      color:#fff;
+    .plan-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
     }
-    .buy-btn{
-      background:linear-gradient(180deg,var(--aqua),#00e2f0);
-      color:#001217;
-      padding:.5rem 1rem;
-      border-radius:999px;
-      font-weight:800;
-      box-shadow:0 0 20px var(--aqua-glow);
-      text-decoration:none;
+
+    /* Video background */
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.45) blur(2px);
     }
-    .buy-btn:hover{
-      transform:translateY(-4px);
-      box-shadow:0 0 40px var(--aqua-glow);
+
+    /* Minecraft font for prices */
+    .mc-font {
+      font-family: 'Minecraft', sans-serif;
+      letter-spacing: 1px;
+      color: #00eaff;
     }
-    .tab-btn{
-      font-weight:800;
-      text-transform:uppercase;
-      color:var(--aqua);
-      border:1px solid rgba(6,182,212,0.14);
-      border-radius:999px;
-      padding:.6rem 1rem;
-      transition:.3s;
-    }
-    .tab-btn.active{
-      background:var(--aqua);
-      color:#000;
-      box-shadow:0 8px 30px var(--aqua-glow);
-      transform:translateY(-3px);
+
+    /* Discord banner */
+    .discord-banner {
+      background: url('https://static.vecteezy.com/system/resources/thumbnails/025/053/072/original/purple-abstract-low-poly-background-free-video.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-shadow: 0 0 20px rgba(0,0,0,0.8);
     }
   </style>
 </head>
-<body class="antialiased">
+<body class="bg-gray-950 text-white font-sans relative overflow-x-hidden">
 
-  <!-- Navbar -->
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4">
+  </video>
+
+  <!-- Navbar Include -->
   <div id="navbar"></div>
-
   <script>
     fetch("navbar.html")
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById("navbar").innerHTML = html;
-      });
+      .then(res => res.text())
+      .then(data => document.getElementById("navbar").innerHTML = data);
   </script>
 
-  <!-- Notice -->
-  <section class="text-center mt-24 mb-6">
-    <p class="font-extrabold text-xl text-[var(--aqua)]">ORDERS ARE PROCESSED THROUGH DISCORD</p>
+  <!-- Hero Section -->
+  <section class="flex flex-col items-center justify-center h-[90vh] text-center px-4">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
+      Minecraft Hosting Plans
+    </h1>
+    <p class="text-gray-300 max-w-2xl mb-8">
+      Choose from our Budget or Performance tiers. Built for every player — from casual worlds to mega networks.
+    </p>
+    <a href="#plans" class="glow-button text-white px-10 py-4 rounded-full text-lg font-semibold">Explore Plans</a>
   </section>
 
-  <!-- HERO -->
-  <section class="max-w-6xl mx-auto px-5 text-center py-10">
-    <h1 class="hero-title text-3xl md:text-4xl mb-3">MINECRAFT HOSTING</h1>
-    <p class="text-gray-300">Select a plan — <span class="text-[var(--aqua)] font-bold">Budget</span> (Intel Xeon Platinum) or <span class="text-[var(--aqua)] font-bold">Performance</span> (AMD EPYC)</p>
-  </section>
+  <!-- Budget Plans -->
+  <section id="plans" class="py-24 bg-gray-950/70">
+    <h2 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-12">
+      💸 Budget Plans
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-6">
 
-  <!-- Tabs -->
-  <section class="max-w-6xl mx-auto px-5">
-    <div class="flex justify-center gap-4 mb-8">
-      <button class="tab-btn active" data-tab="budget">BUDGET</button>
-      <button class="tab-btn" data-tab="performance">PERFORMANCE</button>
+      <!-- Plan Template -->
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-purple-300 mb-2">DIRT</h3>
+        <p class="text-gray-400 mb-3">Basic start for small worlds.</p>
+        <p class="mc-font text-3xl mb-6">₹49/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-cyan-300 mb-2">COBBLESTONE</h3>
+        <p class="text-gray-400 mb-3">Perfect for survival servers.</p>
+        <p class="mc-font text-3xl mb-6">₹99/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-purple-300 mb-2">IRON</h3>
+        <p class="text-gray-400 mb-3">Reliable for plugins & mods.</p>
+        <p class="mc-font text-3xl mb-6">₹149/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-cyan-300 mb-2">GOLD</h3>
+        <p class="text-gray-400 mb-3">For small communities.</p>
+        <p class="mc-font text-3xl mb-6">₹199/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-purple-300 mb-2">DIAMOND</h3>
+        <p class="text-gray-400 mb-3">High-speed hosting for pro players.</p>
+        <p class="mc-font text-3xl mb-6">₹299/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-cyan-300 mb-2">EMERALD</h3>
+        <p class="text-gray-400 mb-3">For modpacks & SMPs.</p>
+        <p class="mc-font text-3xl mb-6">₹399/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-purple-300 mb-2">NETHERITE</h3>
+        <p class="text-gray-400 mb-3">Top-tier for everything.</p>
+        <p class="mc-font text-3xl mb-6">₹499/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
     </div>
+  </section>
 
-    <!-- PLANS -->
-    <section id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
-      <!-- Budget Plans -->
-      <article class="plan-card budget-tab">
-        <h3 class="plan-name">CREEP</h3>
-        <p>Intel Xeon Platinum • 1 vCore @ 3.5GHz</p>
-        <p>2GB DDR4 3200MHz RAM • 10GB NVMe</p>
-        <p>1Gbps • DDoS Protected</p>
-        <div class="price">₹40/mo</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+  <!-- Performance Plans -->
+  <section class="py-24 bg-gray-900/90">
+    <h2 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 mb-12">
+      ⚙️ Performance Plans
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto px-6">
 
-      <article class="plan-card budget-tab">
-        <h3 class="plan-name">WITHR</h3>
-        <p>Intel Xeon Platinum • 4 vCores @ 3.7GHz</p>
-        <p>8GB DDR4 3200MHz RAM • 40GB NVMe</p>
-        <p>1Gbps • DDoS Protected</p>
-        <div class="price">₹200/mo</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-cyan-300 mb-2">OAK</h3>
+        <p class="text-gray-400 mb-3">For modded or creative servers.</p>
+        <p class="mc-font text-3xl mb-6">₹699/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
 
-      <article class="plan-card budget-tab">
-        <h3 class="plan-name">DRGON</h3>
-        <p>Intel Xeon Platinum • 4 vCores @ 3.8GHz</p>
-        <p>10GB DDR4 3200MHz RAM • 50GB NVMe</p>
-        <p>1Gbps • DDoS Protected</p>
-        <div class="price">₹250/mo</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-purple-300 mb-2">REDSTONE</h3>
+        <p class="text-gray-400 mb-3">Optimized for automation builds.</p>
+        <p class="mc-font text-3xl mb-6">₹899/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
 
-      <!-- Performance Plans -->
-      <article class="plan-card performance-tab hidden">
-        <h3 class="plan-name">EPYRA</h3>
-        <p>AMD EPYC 7003 • 1 vCore @ 3.8GHz</p>
-        <p>2GB DDR4 3600MHz RAM • 10GB NVMe</p>
-        <p>2Gbps • DDoS Protected</p>
-        <div class="price">₹60/mo</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-cyan-300 mb-2">LAPIS</h3>
+        <p class="text-gray-400 mb-3">Balanced for small networks.</p>
+        <p class="mc-font text-3xl mb-6">₹1099/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
 
-      <article class="plan-card performance-tab hidden">
-        <h3 class="plan-name">NEXUS</h3>
-        <p>AMD EPYC 7003 • 4 vCores @ 3.95GHz</p>
-        <p>8GB DDR4 3600MHz RAM • 40GB NVMe</p>
-        <p>2Gbps • DDoS Protected</p>
-        <div class="price">₹250/mo</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-purple-300 mb-2">OBSIDIAN</h3>
+        <p class="text-gray-400 mb-3">Ultra protection and stability.</p>
+        <p class="mc-font text-3xl mb-6">₹1499/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
 
-      <article class="plan-card performance-tab hidden">
-        <h3 class="plan-name">VORTX</h3>
-        <p>AMD EPYC 7003 • 6 vCores @ 4.1GHz</p>
-        <p>16GB DDR4 3600MHz RAM • 80GB NVMe</p>
-        <p>2Gbps • DDoS Protected</p>
-        <div class="price">₹500/mo</div>
-        <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-    </section>
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-cyan-300 mb-2">QUARTZ</h3>
+        <p class="text-gray-400 mb-3">Smooth performance guaranteed.</p>
+        <p class="mc-font text-3xl mb-6">₹1899/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-purple-300 mb-2">AMETHYST</h3>
+        <p class="text-gray-400 mb-3">Shiny and powerful — like your builds.</p>
+        <p class="mc-font text-3xl mb-6">₹2299/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+      <div class="plan-box bg-gray-900/80 p-8 rounded-2xl text-center">
+        <h3 class="text-2xl font-semibold text-cyan-300 mb-2">NETHER_STAR</h3>
+        <p class="text-gray-400 mb-3">Maxed out — ultimate hosting.</p>
+        <p class="mc-font text-3xl mb-6">₹2999/mo</p>
+        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="glow-button px-6 py-2 rounded-full text-lg font-semibold">Buy Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Discord Banner -->
+  <section class="discord-banner py-16 text-center">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">ORDERS ARE PROCESSED THROUGH DISCORD</h2>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="bg-white/10 backdrop-blur-md px-10 py-4 rounded-full text-xl font-bold hover:bg-white/20 transition">
+      Join Now →
+    </a>
   </section>
 
   <!-- Footer -->
-  <footer class="mt-6 pb-12 text-center text-gray-400">
-    © 2025 TenterCloud • <a href="https://discord.gg/pbWjbuuMpj" class="text-[var(--aqua)]" target="_blank">Join our Discord</a>
+  <footer class="py-6 text-center bg-gray-950/80 border-t border-purple-700">
+    <p class="text-gray-400">© 2025 TenterCloud, Inc. All Rights Reserved.</p>
   </footer>
-
-  <script>
-    const tabBtns=document.querySelectorAll('.tab-btn');
-    const budgetTabs=document.querySelectorAll('.budget-tab');
-    const perfTabs=document.querySelectorAll('.performance-tab');
-    tabBtns.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        tabBtns.forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        if(btn.dataset.tab==='performance'){
-          budgetTabs.forEach(p=>p.classList.add('hidden'));
-          perfTabs.forEach(p=>p.classList.remove('hidden'));
-        }else{
-          budgetTabs.forEach(p=>p.classList.remove('hidden'));
-          perfTabs.forEach(p=>p.classList.add('hidden'));
-        }
-      });
-    });
-  </script>
 
 </body>
 </html>
