@@ -1,207 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Minecraft Hosting — TenterCloud</title>
+// ========== LOAD NAVBAR.HTML ==========
+const navbarPlaceholder = document.getElementById('navbar-placeholder');
+if (navbarPlaceholder) {
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(html => {
+      navbarPlaceholder.innerHTML = html;
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    :root {
-      --aqua: #06b6d4;
-      --aqua-soft: rgba(6,182,212,0.16);
-      --aqua-glow: rgba(6,182,212,0.28);
-      --card-bg: rgba(8,12,16,0.6);
-    }
-
-    body {
-      font-family: "Inter", sans-serif;
-      background-color: #030613;
-      color: #e6eef2;
-    }
-
-    /* Plans */
-    .plan-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      border: 1px solid rgba(6,182,212,0.06);
-      padding: 1.1rem;
-      transition: transform .36s cubic-bezier(.2,.9,.3,1), box-shadow .36s;
-      backdrop-filter: blur(8px);
-    }
-    .plan-card:hover{
-      transform: translateY(-10px) scale(1.01);
-      box-shadow: 0 22px 60px var(--aqua-soft);
-      border-color: var(--aqua);
-    }
-    .plan-name{
-      color: var(--aqua);
-      font-weight:800;
-      font-size:1.05rem;
-    }
-    .specs{ color:#b6cfe0; margin:.28rem 0; font-size:.95rem; }
-    .price{ font-weight:900; font-size:1.28rem; margin:.5rem 0; color:#ffffff; }
-    .buy-btn{
-      display:inline-block;
-      padding:.5rem .85rem;
-      border-radius:999px;
-      font-weight:800;
-      background: linear-gradient(180deg, var(--aqua), #00e2f0);
-      color:#001217;
-      box-shadow: 0 10px 34px var(--aqua-glow);
-      transition: transform .2s ease, box-shadow .2s ease;
-      text-decoration:none;
-    }
-    .buy-btn:hover{ transform: translateY(-4px); box-shadow: 0 26px 70px var(--aqua-glow); }
-
-    /* Tabs */
-    .tabs .tab-btn{
-      font-weight:800;
-      color: var(--aqua);
-      border:1px solid rgba(6,182,212,0.14);
-      background:transparent;
-      padding:.62rem 1.15rem;
-      border-radius:999px;
-      transition: all .28s ease;
-    }
-    .tabs .tab-btn.active{
-      background: var(--aqua);
-      color:#001217;
-      box-shadow: 0 10px 40px var(--aqua-glow);
-      transform: translateY(-4px);
-    }
-
-    /* ORDERS info */
-    .orders-info {
-      text-align:center;
-      font-weight:bold;
-      color: var(--aqua);
-      margin: 1rem 0;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 800px){
-      .plan-name{ font-size: 1rem; }
-      .price{ font-size: 1.1rem; }
-    }
-  </style>
-</head>
-<body class="antialiased">
-
-  <!-- NAVBAR PLACEHOLDER -->
-  <div id="navbar-placeholder"></div>
-
-  <!-- ORDERS INFO -->
-  <div class="orders-info">
-    ORDERS ARE PROCESSED THROUGH DISCORD
-  </div>
-
-  <main class="pt-8 max-w-6xl mx-auto px-5">
-
-    <!-- Tabs -->
-    <div class="tabs flex justify-center gap-4 mb-8">
-      <button class="tab-btn active" data-tab="budget">BUDGET</button>
-      <button class="tab-btn" data-tab="performance">PERFORMANCE</button>
-    </div>
-
-    <!-- Plans Grid -->
-    <section id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-3 pb-20">
-
-      <!-- BUDGET Plans -->
-      <script>
-        const budgetPlans = [
-          {name:"WOOD", ram:"2GB", cpu:"1 vCore @ 3.5GHz", storage:"10GB NVMe", price:"₹40"},
-          {name:"STONE", ram:"4GB", cpu:"2 vCores @ 3.5GHz", storage:"20GB NVMe", price:"₹80"},
-          {name:"IRON", ram:"6GB", cpu:"3 vCores @ 3.6GHz", storage:"30GB NVMe", price:"₹125"},
-          {name:"GOLD", ram:"8GB", cpu:"4 vCores @ 3.7GHz", storage:"40GB NVMe", price:"₹200"},
-          {name:"DIAMOND", ram:"10GB", cpu:"4 vCores @ 3.8GHz", storage:"50GB NVMe", price:"₹250"},
-          {name:"EMERALD", ram:"12GB", cpu:"5 vCores @ 3.8GHz", storage:"60GB NVMe", price:"₹300"},
-          {name:"NETHERITE", ram:"16GB", cpu:"6 vCores @ 3.9GHz", storage:"80GB NVMe", price:"₹400"}
-        ];
-
-        const perfPlans = [
-          {name:"WOOD", ram:"2GB", cpu:"1 vCore @ 3.8GHz", storage:"10GB NVMe", price:"₹60"},
-          {name:"STONE", ram:"4GB", cpu:"2 vCores @ 3.8GHz", storage:"20GB NVMe", price:"₹100"},
-          {name:"IRON", ram:"6GB", cpu:"3 vCores @ 3.9GHz", storage:"30GB NVMe", price:"₹150"},
-          {name:"GOLD", ram:"8GB", cpu:"4 vCores @ 3.95GHz", storage:"40GB NVMe", price:"₹250"},
-          {name:"DIAMOND", ram:"10GB", cpu:"4 vCores @ 4.0GHz", storage:"50GB NVMe", price:"₹350"},
-          {name:"EMERALD", ram:"12GB", cpu:"5 vCores @ 4.0GHz", storage:"60GB NVMe", price:"₹450"},
-          {name:"NETHERITE", ram:"16GB", cpu:"6 vCores @ 4.1GHz", storage:"80GB NVMe", price:"₹500"}
-        ];
-
-        function renderPlans(plans, tabClass){
-          return plans.map(p=>`
-            <article class="plan-card ${tabClass}">
-              <div class="flex items-baseline justify-between">
-                <h3 class="plan-name">${p.name}</h3>
-                <span class="tag">${p.ram}</span>
-              </div>
-              <p class="specs">${p.cpu}</p>
-              <p class="specs">${p.ram} DDR4 RAM</p>
-              <p class="specs">${p.storage}</p>
-              <p class="specs">1 Gbps Network • DDoS Protected</p>
-              <div class="price">${p.price} <span class="text-gray-400 text-sm">/ month</span></div>
-              <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-            </article>
-          `).join('');
-        }
-
-        document.write(renderPlans(budgetPlans,'budget-tab'));
-        document.write(renderPlans(perfPlans,'performance-tab hidden'));
-      </script>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="mt-6 pb-12 text-center text-gray-400">
-    <p>© 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" class="text-[var(--aqua)]" target="_blank">Join our Discord</a></p>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    // Load navbar.html with animations
-    fetch('navbar.html')
-      .then(res=>res.text())
-      .then(html=>{
-        document.getElementById('navbar-placeholder').innerHTML = html;
-
-        // Run navbar scripts
-        const scripts = document.getElementById('navbar-placeholder').querySelectorAll('script');
-        scripts.forEach(s=>{
-          const ns = document.createElement('script');
-          if(s.src) ns.src=s.src;
-          else ns.textContent = s.textContent;
-          document.body.appendChild(ns);
-        });
+      // Re-run any scripts inside navbar.html for animations
+      const scripts = navbarPlaceholder.querySelectorAll('script');
+      scripts.forEach(s => {
+        const newScript = document.createElement('script');
+        if (s.src) newScript.src = s.src;
+        else newScript.textContent = s.textContent;
+        document.body.appendChild(newScript);
       });
 
-    // Tabs
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const budgetTabs = document.querySelectorAll('.budget-tab');
-    const perfTabs = document.querySelectorAll('.performance-tab');
-
-    tabBtns.forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        tabBtns.forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        if(btn.dataset.tab==='performance'){
-          budgetTabs.forEach(p=>p.classList.add('hidden'));
-          perfTabs.forEach(p=>p.classList.remove('hidden'));
-        } else {
-          budgetTabs.forEach(p=>p.classList.remove('hidden'));
-          perfTabs.forEach(p=>p.classList.add('hidden'));
-        }
-      });
+      // Mobile menu toggle (if any)
+      const menuBtn = navbarPlaceholder.querySelector('#menu-btn');
+      const mobileMenu = navbarPlaceholder.querySelector('#mobile-menu');
+      if(menuBtn && mobileMenu){
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      }
     });
+}
 
-    // Default: show budget
-    budgetTabs.forEach(p=>p.classList.remove('hidden'));
-    perfTabs.forEach(p=>p.classList.add('hidden'));
-  </script>
+// ========== TABS SWITCHING ==========
+const tabBtns = document.querySelectorAll('.tab-btn');
+const budgetTabs = document.querySelectorAll('.budget-tab');
+const perfTabs = document.querySelectorAll('.performance-tab');
 
-</body>
-</html>
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active from all
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    if (btn.dataset.tab === 'performance') {
+      budgetTabs.forEach(p => p.classList.add('hidden'));
+      perfTabs.forEach(p => p.classList.remove('hidden'));
+    } else {
+      budgetTabs.forEach(p => p.classList.remove('hidden'));
+      perfTabs.forEach(p => p.classList.add('hidden'));
+    }
+  });
+});
+
+// Default: show budget tab
+budgetTabs.forEach(p => p.classList.remove('hidden'));
+perfTabs.forEach(p => p.classList.add('hidden'));
