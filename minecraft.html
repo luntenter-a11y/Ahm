@@ -1,165 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Minecraft Hosting — TenterCloud</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <script src="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91-removebg-preview.png?raw=true"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root{
-      --purple: #a855f7;
-      --purple-soft: rgba(168,85,247,0.15);
-      --purple-glow: rgba(168,85,247,0.25);
-      --card-bg: rgba(20,10,40,0.7);
+    :root {
+      --aqua: #06b6d4;
+      --aqua-soft: rgba(6,182,212,0.16);
+      --aqua-glow: rgba(6,182,212,0.28);
+      --card-bg: rgba(8,12,16,0.6);
     }
 
-    body{
+    body {
       font-family: "Inter", sans-serif;
-      background: #1c0f3c;
-      color:#e6eef2;
+      background-color: #030613;
+      color: #e6eef2;
     }
 
-    /* Discord order info */
-    .discord-order{
-      text-align:center;
-      font-weight:bold;
-      margin:1rem 0;
-      color:var(--purple);
-    }
-
-    /* Plan cards */
-    .plan-card{
+    /* Plans */
+    .plan-card {
       background: var(--card-bg);
-      border-radius:12px;
-      border: 1px solid rgba(168,85,247,0.2);
-      padding:1.2rem;
-      transition: transform .3s, box-shadow .3s;
-      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      border: 1px solid rgba(6,182,212,0.06);
+      padding: 1.1rem;
+      transition: transform .36s cubic-bezier(.2,.9,.3,1), box-shadow .36s;
+      backdrop-filter: blur(8px);
     }
     .plan-card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px var(--purple-soft);
-      border-color: var(--purple);
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 22px 60px var(--aqua-soft);
+      border-color: var(--aqua);
     }
     .plan-name{
-      color: var(--purple);
+      color: var(--aqua);
       font-weight:800;
-      letter-spacing: .5px;
-      font-size: 1rem;
+      font-size:1.05rem;
     }
-    .specs{ color:#d1c4e9; margin:.25rem 0; font-size:.95rem; }
-    .price{ font-weight:800; font-size:1.25rem; margin:.5rem 0; color:#ffffff; }
-
+    .specs{ color:#b6cfe0; margin:.28rem 0; font-size:.95rem; }
+    .price{ font-weight:900; font-size:1.28rem; margin:.5rem 0; color:#ffffff; }
     .buy-btn{
       display:inline-block;
       padding:.5rem .85rem;
       border-radius:999px;
-      font-weight:700;
-      background: linear-gradient(180deg, var(--purple), #c084fc);
-      color:#fff;
-      box-shadow: 0 10px 30px var(--purple-glow);
-      transition: transform .2s, box-shadow .2s;
+      font-weight:800;
+      background: linear-gradient(180deg, var(--aqua), #00e2f0);
+      color:#001217;
+      box-shadow: 0 10px 34px var(--aqua-glow);
+      transition: transform .2s ease, box-shadow .2s ease;
       text-decoration:none;
     }
-    .buy-btn:hover{ transform: translateY(-3px); box-shadow: 0 25px 60px var(--purple-glow); }
+    .buy-btn:hover{ transform: translateY(-4px); box-shadow: 0 26px 70px var(--aqua-glow); }
 
     /* Tabs */
     .tabs .tab-btn{
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.9px;
-      color:var(--purple);
-      border:1px solid rgba(168,85,247,0.2);
+      font-weight:800;
+      color: var(--aqua);
+      border:1px solid rgba(6,182,212,0.14);
       background:transparent;
-      padding:.6rem 1.1rem;
+      padding:.62rem 1.15rem;
       border-radius:999px;
-      cursor:pointer;
-      transition: all .25s ease;
+      transition: all .28s ease;
     }
     .tabs .tab-btn.active{
-      background:var(--purple);
-      color:#fff;
-      box-shadow: 0 10px 40px var(--purple-glow);
+      background: var(--aqua);
+      color:#001217;
+      box-shadow: 0 10px 40px var(--aqua-glow);
+      transform: translateY(-4px);
     }
 
-    /* Responsive */
+    /* ORDERS info */
+    .orders-info {
+      text-align:center;
+      font-weight:bold;
+      color: var(--aqua);
+      margin: 1rem 0;
+    }
+
+    /* Responsive tweaks */
     @media (max-width: 800px){
-      .plan-name{ font-size:.95rem; }
-      .price{ font-size:1.1rem; }
+      .plan-name{ font-size: 1rem; }
+      .price{ font-size: 1.1rem; }
     }
   </style>
 </head>
 <body class="antialiased">
 
-  <!-- NAVBAR from navbar.html -->
+  <!-- NAVBAR PLACEHOLDER -->
   <div id="navbar-placeholder"></div>
 
-  <!-- Discord info -->
-  <div class="discord-order">ORDERS ARE PROCESSED THROUGH DISCORD</div>
+  <!-- ORDERS INFO -->
+  <div class="orders-info">
+    ORDERS ARE PROCESSED THROUGH DISCORD
+  </div>
 
-  <!-- HERO -->
-  <section class="max-w-6xl mx-auto px-5 text-center py-16">
-    <h1 class="text-3xl md:text-4xl font-bold text-[var(--purple)]">MINECRAFT HOSTING</h1>
-    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">Choose your plan below — <span class="font-bold text-[var(--purple)]">Budget</span> or <span class="font-bold text-[var(--purple)]">Performance</span>. Click Buy to start via Discord.</p>
-  </section>
+  <main class="pt-8 max-w-6xl mx-auto px-5">
 
-  <!-- TABS -->
-  <section class="max-w-6xl mx-auto px-5">
+    <!-- Tabs -->
     <div class="tabs flex justify-center gap-4 mb-8">
       <button class="tab-btn active" data-tab="budget">BUDGET</button>
       <button class="tab-btn" data-tab="performance">PERFORMANCE</button>
     </div>
 
-    <!-- PLANS GRID -->
+    <!-- Plans Grid -->
     <section id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-3 pb-20">
 
-      <!-- Budget plans -->
+      <!-- BUDGET Plans -->
       <script>
         const budgetPlans = [
-          {name:"COAL", ram:"2GB", vcore:1, storage:"10GB", price:40},
-          {name:"IRON", ram:"4GB", vcore:2, storage:"20GB", price:80},
-          {name:"GOLD", ram:"6GB", vcore:3, storage:"30GB", price:120},
-          {name:"DIAMOND", ram:"8GB", vcore:4, storage:"40GB", price:200},
-          {name:"EMERALD", ram:"10GB", vcore:4, storage:"50GB", price:250},
-          {name:"LAPIS", ram:"12GB", vcore:5, storage:"60GB", price:300},
-          {name:"REDSTONE", ram:"16GB", vcore:6, storage:"80GB", price:400},
+          {name:"WOOD", ram:"2GB", cpu:"1 vCore @ 3.5GHz", storage:"10GB NVMe", price:"₹40"},
+          {name:"STONE", ram:"4GB", cpu:"2 vCores @ 3.5GHz", storage:"20GB NVMe", price:"₹80"},
+          {name:"IRON", ram:"6GB", cpu:"3 vCores @ 3.6GHz", storage:"30GB NVMe", price:"₹125"},
+          {name:"GOLD", ram:"8GB", cpu:"4 vCores @ 3.7GHz", storage:"40GB NVMe", price:"₹200"},
+          {name:"DIAMOND", ram:"10GB", cpu:"4 vCores @ 3.8GHz", storage:"50GB NVMe", price:"₹250"},
+          {name:"EMERALD", ram:"12GB", cpu:"5 vCores @ 3.8GHz", storage:"60GB NVMe", price:"₹300"},
+          {name:"NETHERITE", ram:"16GB", cpu:"6 vCores @ 3.9GHz", storage:"80GB NVMe", price:"₹400"}
         ];
 
-        const perfPlans = budgetPlans.map(p=>({ ...p, vcore:p.vcore, price:p.price+20, network:"2Gbps"}));
+        const perfPlans = [
+          {name:"WOOD", ram:"2GB", cpu:"1 vCore @ 3.8GHz", storage:"10GB NVMe", price:"₹60"},
+          {name:"STONE", ram:"4GB", cpu:"2 vCores @ 3.8GHz", storage:"20GB NVMe", price:"₹100"},
+          {name:"IRON", ram:"6GB", cpu:"3 vCores @ 3.9GHz", storage:"30GB NVMe", price:"₹150"},
+          {name:"GOLD", ram:"8GB", cpu:"4 vCores @ 3.95GHz", storage:"40GB NVMe", price:"₹250"},
+          {name:"DIAMOND", ram:"10GB", cpu:"4 vCores @ 4.0GHz", storage:"50GB NVMe", price:"₹350"},
+          {name:"EMERALD", ram:"12GB", cpu:"5 vCores @ 4.0GHz", storage:"60GB NVMe", price:"₹450"},
+          {name:"NETHERITE", ram:"16GB", cpu:"6 vCores @ 4.1GHz", storage:"80GB NVMe", price:"₹500"}
+        ];
 
         function renderPlans(plans, tabClass){
-          return plans.map(p => `
-            <article class="plan-card ${tabClass} ${tabClass==='performance-tab'?'hidden':''}">
+          return plans.map(p=>`
+            <article class="plan-card ${tabClass}">
               <div class="flex items-baseline justify-between">
-                <h3 class="plan-name">${p.name}</h3><span class="tag">${p.ram}</span>
+                <h3 class="plan-name">${p.name}</h3>
+                <span class="tag">${p.ram}</span>
               </div>
-              <p class="specs">${tabClass==='budget-tab'?'Intel Xeon Platinum':'AMD EPYC'} • ${p.vcore} vCore</p>
-              <p class="specs">${p.ram} RAM</p>
-              <p class="specs">${p.storage} NVMe Storage</p>
-              <p class="specs">${tabClass==='budget-tab'?'1Gbps':'2Gbps'} Network • DDoS Protected</p>
-              <div class="price">₹${p.price}</div>
+              <p class="specs">${p.cpu}</p>
+              <p class="specs">${p.ram} DDR4 RAM</p>
+              <p class="specs">${p.storage}</p>
+              <p class="specs">1 Gbps Network • DDoS Protected</p>
+              <div class="price">${p.price} <span class="text-gray-400 text-sm">/ month</span></div>
               <a class="buy-btn" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
             </article>
           `).join('');
         }
 
         document.write(renderPlans(budgetPlans,'budget-tab'));
-        document.write(renderPlans(perfPlans,'performance-tab'));
+        document.write(renderPlans(perfPlans,'performance-tab hidden'));
       </script>
 
-    </section>
-  </section>
+  </main>
 
+  <!-- Footer -->
+  <footer class="mt-6 pb-12 text-center text-gray-400">
+    <p>© 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" class="text-[var(--aqua)]" target="_blank">Join our Discord</a></p>
+  </footer>
+
+  <!-- Scripts -->
   <script>
-    // Load navbar.html
+    // Load navbar.html with animations
     fetch('navbar.html')
-      .then(res => res.text())
-      .then(html => { document.getElementById('navbar-placeholder').innerHTML = html; });
+      .then(res=>res.text())
+      .then(html=>{
+        document.getElementById('navbar-placeholder').innerHTML = html;
+
+        // Run navbar scripts
+        const scripts = document.getElementById('navbar-placeholder').querySelectorAll('script');
+        scripts.forEach(s=>{
+          const ns = document.createElement('script');
+          if(s.src) ns.src=s.src;
+          else ns.textContent = s.textContent;
+          document.body.appendChild(ns);
+        });
+      });
 
     // Tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
@@ -170,8 +188,7 @@
       btn.addEventListener('click', ()=>{
         tabBtns.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        const tab = btn.dataset.tab;
-        if(tab==='performance'){
+        if(btn.dataset.tab==='performance'){
           budgetTabs.forEach(p=>p.classList.add('hidden'));
           perfTabs.forEach(p=>p.classList.remove('hidden'));
         } else {
@@ -181,7 +198,7 @@
       });
     });
 
-    // default
+    // Default: show budget
     budgetTabs.forEach(p=>p.classList.remove('hidden'));
     perfTabs.forEach(p=>p.classList.add('hidden'));
   </script>
