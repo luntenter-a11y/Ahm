@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TenterCloud | Home</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- ✅ Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    /* ---------- BASIC RESET ---------- */
+    /* ---------- GLOBAL RESET ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -18,8 +21,8 @@
     body, html {
       height: 100%;
       overflow-x: hidden;
-      color: white;
       background-color: #0b0014;
+      color: white;
     }
 
     /* ---------- BACKGROUND VIDEO ---------- */
@@ -30,55 +33,60 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
-      opacity: 0.4;
+      z-index: -1;
+      opacity: 0.5;
+      filter: brightness(0.6);
     }
 
     /* ---------- HERO SECTION ---------- */
     .hero {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       text-align: center;
       padding: 0 20px;
-      background: linear-gradient(180deg, rgba(43,0,85,0.6), rgba(0,0,0,0.9));
+      background: linear-gradient(180deg, rgba(43,0,85,0.6), rgba(0,0,0,0.85));
+      animation: fadeIn 2s ease;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3.8rem;
       font-weight: 800;
-      text-shadow: 0 0 20px #a020f0;
-      animation: fadeInDown 1.5s ease;
+      text-shadow: 0 0 25px #a020f0;
+      animation: slideDown 1.5s ease;
     }
 
     .hero p {
       font-size: 1.2rem;
-      margin: 20px 0 30px;
+      margin: 20px 0 35px;
+      color: #e0e0ff;
+      max-width: 700px;
       animation: fadeInUp 2s ease;
     }
 
     .hero a {
       background: linear-gradient(90deg, #8b00ff, #00ffff);
-      padding: 12px 30px;
+      padding: 14px 38px;
+      border-radius: 40px;
       color: white;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 50px;
-      transition: all 0.4s ease;
+      transition: 0.4s ease;
+      box-shadow: 0 0 15px #8b00ff;
       animation: pulse 3s infinite;
     }
 
     .hero a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff;
+      transform: scale(1.07);
+      box-shadow: 0 0 25px #00ffff;
     }
 
     /* ---------- WHY CHOOSE US ---------- */
     .why-us {
-      text-align: center;
       padding: 100px 20px;
+      text-align: center;
       background: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(43,0,85,0.7));
     }
 
@@ -98,117 +106,109 @@
     }
 
     .why-card {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 30px;
-      backdrop-filter: blur(5px);
-      transition: all 0.4s ease;
+      backdrop-filter: blur(8px);
+      transition: 0.4s ease;
       animation: floatUp 2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .why-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px #8b00ff;
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 25px #8b00ff;
     }
 
     .why-card h3 {
-      margin-bottom: 15px;
       color: #00ffff;
+      margin-bottom: 15px;
       font-size: 1.4rem;
     }
 
     .why-card p {
       color: #ddd;
       font-size: 1rem;
+      line-height: 1.5;
     }
 
     /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
-      padding: 40px;
-      background-color: rgba(0,0,0,0.8);
+      padding: 35px 10px;
       font-size: 0.9rem;
+      background: rgba(0,0,0,0.85);
+      border-top: 1px solid rgba(255,255,255,0.1);
       letter-spacing: 1px;
     }
 
     /* ---------- ANIMATIONS ---------- */
-    @keyframes fadeInDown {
-      0% {opacity: 0; transform: translateY(-30px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(30px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-
-    @keyframes fadeIn {
-      0% {opacity: 0;}
-      100% {opacity: 1;}
-    }
-
-    @keyframes floatUp {
-      0% {opacity: 0; transform: translateY(20px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-
-    @keyframes pulse {
-      0%, 100% {box-shadow: 0 0 15px #8b00ff;}
-      50% {box-shadow: 0 0 25px #00ffff;}
-    }
+    @keyframes fadeIn { 0%{opacity:0;} 100%{opacity:1;} }
+    @keyframes fadeInUp { 0%{opacity:0; transform:translateY(30px);} 100%{opacity:1; transform:translateY(0);} }
+    @keyframes slideDown { 0%{opacity:0; transform:translateY(-40px);} 100%{opacity:1; transform:translateY(0);} }
+    @keyframes floatUp { 0%{opacity:0; transform:translateY(20px);} 100%{opacity:1; transform:translateY(0);} }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 20px #8b00ff;} 50%{box-shadow:0 0 30px #00ffff;} }
   </style>
 </head>
 
 <body>
-  <!-- BACKGROUND VIDEO -->
-  <video autoplay muted loop class="bg-video">
+  <!-- 🔥 BACKGROUND VIDEO -->
+  <video autoplay muted loop playsinline class="bg-video">
     <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4" />
   </video>
 
-  <!-- NAVBAR (from navbar.html) -->
+  <!-- 🧭 NAVBAR (loaded dynamically) -->
   <div id="navbar-container"></div>
 
-  <!-- HERO -->
+  <!-- 🌟 HERO -->
   <section class="hero">
-    <h1>Welcome to TenterCloud</h1>
-    <p>Experience high-performance game hosting with unbeatable prices & powerful servers.</p>
+    <h1>Welcome to <span style="color:#00ffff;">TenterCloud</span></h1>
+    <p>Experience blazing-fast game hosting powered by high-performance hardware and ultra-low latency servers.</p>
     <a href="services.html">View Services</a>
   </section>
 
-  <!-- WHY CHOOSE US -->
+  <!-- 💠 WHY CHOOSE US -->
   <section class="why-us" id="why">
     <h2>Why Choose Us?</h2>
     <div class="why-grid">
       <div class="why-card">
         <h3>⚡ Ultra-Fast Performance</h3>
-        <p>Powered by DDR4 RAM and NVMe Gen4 SSDs to ensure minimal lag and maximum uptime.</p>
+        <p>Our NVMe Gen4 SSDs and DDR4 RAM ensure maximum speed and zero lag for every game session.</p>
       </div>
       <div class="why-card">
         <h3>🛡️ DDoS Protection</h3>
-        <p>Keep your servers safe with enterprise-grade protection against all attacks.</p>
+        <p>Stay safe with enterprise-grade mitigation and continuous network monitoring.</p>
       </div>
       <div class="why-card">
         <h3>💬 24/7 Discord Support</h3>
-        <p>Our team is active around the clock on Discord to help with anything you need.</p>
+        <p>Our team is always active to assist you instantly through our Discord community.</p>
       </div>
       <div class="why-card">
         <h3>🚀 Instant Deployment</h3>
-        <p>Your hosting setup is ready within seconds after order confirmation.</p>
+        <p>Your server is online within seconds after payment—no waiting, no setup delay.</p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ⚫ FOOTER -->
   <footer>
     © 2025 TenterCloud • All Rights Reserved
   </footer>
 
   <script>
-    // Load navbar.html dynamically
+    // ✅ Dynamically load navbar.html
     fetch("navbar.html")
       .then(res => res.text())
       .then(data => {
         document.getElementById("navbar-container").innerHTML = data;
+
+        // 🧩 Re-run navbar script if present
+        const scriptMatch = data.match(/<script>([\s\S]*?)<\/script>/);
+        if (scriptMatch) {
+          const script = document.createElement("script");
+          script.textContent = scriptMatch[1];
+          document.body.appendChild(script);
+        }
       });
   </script>
 </body>
