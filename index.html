@@ -1,94 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TenterCloud — Homepage</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TenterCloud | Home</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #6b5b95, #06b6d4);
-      color: #f0f0f0;
-      overflow-x: hidden;
+    /* ---------- BASIC RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
     }
-    a { text-decoration: none; }
-    .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-    .fade-up.show { opacity: 1; transform: translateY(0); }
-    .hero-title { font-size: 3rem; font-weight: 700; color: #06b6d4; }
-    .hero-subtitle { font-size: 1.2rem; color: #e0e0e0; margin-top: 1rem; }
-    .btn-discord { background: #8e44ad; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 700; color: #fff; display: inline-block; margin-top: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .btn-discord:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.25); }
+
+    body, html {
+      height: 100%;
+      overflow-x: hidden;
+      color: white;
+      background-color: #0b0014;
+    }
+
+    /* ---------- BACKGROUND VIDEO ---------- */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0.4;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 0 20px;
+      background: linear-gradient(180deg, rgba(43,0,85,0.6), rgba(0,0,0,0.9));
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      text-shadow: 0 0 20px #a020f0;
+      animation: fadeInDown 1.5s ease;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 20px 0 30px;
+      animation: fadeInUp 2s ease;
+    }
+
+    .hero a {
+      background: linear-gradient(90deg, #8b00ff, #00ffff);
+      padding: 12px 30px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 50px;
+      transition: all 0.4s ease;
+      animation: pulse 3s infinite;
+    }
+
+    .hero a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    /* ---------- WHY CHOOSE US ---------- */
+    .why-us {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(43,0,85,0.7));
+    }
+
+    .why-us h2 {
+      font-size: 2.8rem;
+      margin-bottom: 50px;
+      text-shadow: 0 0 10px #00ffff;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .why-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(5px);
+      transition: all 0.4s ease;
+      animation: floatUp 2s ease;
+    }
+
+    .why-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #8b00ff;
+    }
+
+    .why-card h3 {
+      margin-bottom: 15px;
+      color: #00ffff;
+      font-size: 1.4rem;
+    }
+
+    .why-card p {
+      color: #ddd;
+      font-size: 1rem;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(0,0,0,0.8);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes fadeInDown {
+      0% {opacity: 0; transform: translateY(-30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(30px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    @keyframes floatUp {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes pulse {
+      0%, 100% {box-shadow: 0 0 15px #8b00ff;}
+      50% {box-shadow: 0 0 25px #00ffff;}
+    }
   </style>
 </head>
-<body class="antialiased">
 
-  <!-- NAVBAR -->
-  <div id="navbar-container" class="fixed w-full z-50"></div>
+<body>
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop class="bg-video">
+    <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4" />
+  </video>
+
+  <!-- NAVBAR (from navbar.html) -->
+  <div id="navbar-container"></div>
 
   <!-- HERO -->
-  <section class="max-w-6xl mx-auto px-5 text-center py-32 fade-up">
-    <h1 class="hero-title">MINECRAFT HOSTING</h1>
-    <p class="hero-subtitle">
-      ORDERS ARE PROCESSED THROUGH DISCORD. Select a plan on Minecraft hosting page and join our community for instant support.
-    </p>
-    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="btn-discord">Join Discord</a>
+  <section class="hero">
+    <h1>Welcome to TenterCloud</h1>
+    <p>Experience high-performance game hosting with unbeatable prices & powerful servers.</p>
+    <a href="services.html">View Services</a>
   </section>
 
-  <!-- INFO SECTIONS -->
-  <section class="max-w-6xl mx-auto px-5 py-24 fade-up">
-    <h2 class="text-4xl font-bold text-purple-500 mb-6">View Services</h2>
-    <p class="text-gray-200 text-lg max-w-3xl mx-auto">
-      TenterCloud provides professional Minecraft server hosting with high performance, reliable uptime, and DDoS protection. Explore our plans and choose the best fit for your gaming community.
-    </p>
-  </section>
-
-  <section class="max-w-6xl mx-auto px-5 py-24 fade-up">
-    <h2 class="text-4xl font-bold text-purple-500 mb-6">Why Choose Us?</h2>
-    <p class="text-gray-200 text-lg max-w-3xl mx-auto">
-      With both Budget and Performance plans, Intel Xeon & AMD EPYC servers, and instant Discord-based support, we ensure your Minecraft server runs smoothly and securely.
-    </p>
+  <!-- WHY CHOOSE US -->
+  <section class="why-us" id="why">
+    <h2>Why Choose Us?</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>⚡ Ultra-Fast Performance</h3>
+        <p>Powered by DDR4 RAM and NVMe Gen4 SSDs to ensure minimal lag and maximum uptime.</p>
+      </div>
+      <div class="why-card">
+        <h3>🛡️ DDoS Protection</h3>
+        <p>Keep your servers safe with enterprise-grade protection against all attacks.</p>
+      </div>
+      <div class="why-card">
+        <h3>💬 24/7 Discord Support</h3>
+        <p>Our team is active around the clock on Discord to help with anything you need.</p>
+      </div>
+      <div class="why-card">
+        <h3>🚀 Instant Deployment</h3>
+        <p>Your hosting setup is ready within seconds after order confirmation.</p>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="mt-12 py-6 text-center text-gray-300 fade-up">
-    &copy; 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="text-aqua">Join our Discord</a>
+  <footer>
+    © 2025 TenterCloud • All Rights Reserved
   </footer>
 
-  <!-- LOAD NAVBAR.HTML -->
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const navbarContainer = document.getElementById('navbar-container');
-      if(navbarContainer){
-        try {
-          const response = await fetch('/navbar.html');
-          const html = await response.text();
-          navbarContainer.innerHTML = html;
-
-          // Mobile menu toggle
-          const menuBtn = document.getElementById('menu-btn');
-          const mobileMenu = document.getElementById('mobile-menu');
-          if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-          }
-
-          // Trigger animations when in viewport
-          const faders = document.querySelectorAll('.fade-up');
-          const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-          const appearOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-              if(!entry.isIntersecting) return;
-              entry.target.classList.add('show');
-              observer.unobserve(entry.target);
-            });
-          }, appearOptions);
-          faders.forEach(fader => appearOnScroll.observe(fader));
-        } catch(err){
-          console.error('Failed to load navbar:', err);
-        }
-      }
-    });
+    // Load navbar.html dynamically
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+      });
   </script>
 </body>
 </html>
