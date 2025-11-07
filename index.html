@@ -3,195 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TenterCloud | Home</title>
+  <title>TenterCloud - Premium Hosting</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91-removebg-preview.png?raw=true">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --aqua: #06b6d4;
+      --purple: #a855f7;
+      --dark-bg: #030613;
+    }
+
     body {
-      font-family: "Outfit", sans-serif;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, #0a0a1a, #020617 80%);
       color: #fff;
-      margin: 0;
-      background-color: #020617;
       overflow-x: hidden;
     }
 
-    /* 🎥 Background video */
-    .bg-video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      opacity: 0.45;
-      filter: brightness(0.8);
-    }
-
-    /* ✨ Hero Section */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(5px);
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #00e0ff, #7b2ff7);
+    /* Hero text */
+    .gradient-text {
+      background: linear-gradient(90deg, var(--aqua), var(--purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: fadeInDown 1.2s ease;
     }
 
-    .hero p {
-      color: #dbeafe;
-      font-size: 1.1rem;
-      margin-top: 15px;
-      max-width: 600px;
-      animation: fadeIn 1.4s ease;
-    }
-
-    .hero a {
-      margin-top: 30px;
+    /* View Services button */
+    .view-btn {
       display: inline-block;
-      background: linear-gradient(90deg, #00c6ff, #4f46e5);
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-weight: 500;
-      text-decoration: none;
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.4);
+      border-radius: 12px;
+      padding: 0.9rem 1.8rem;
       color: #fff;
-      transition: 0.3s ease;
-      box-shadow: 0 0 15px rgba(0, 230, 255, 0.3);
-      animation: fadeInUp 1.6s ease;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+    .view-btn:hover {
+      background: linear-gradient(90deg, var(--aqua), var(--purple));
+      box-shadow: 0 0 25px rgba(6,182,212,0.4);
+      transform: translateY(-3px);
     }
 
-    .hero a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00e0ff;
+    /* Fade-up animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 💎 Why Choose Us (original beautiful version) */
-    .why-us {
-      text-align: center;
-      padding: 100px 20px;
-      background: rgba(0, 0, 20, 0.7);
-      backdrop-filter: blur(6px);
+    /* Floating icon animation */
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    .why-us h2 {
-      font-size: 2.6rem;
-      font-weight: 600;
-      color: #80eaff;
-      margin-bottom: 60px;
-      text-shadow: 0 0 20px rgba(0, 230, 255, 0.3);
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 35px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
+    /* Why choose us cards */
     .why-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 200, 255, 0.2);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(6,182,212,0.2);
       border-radius: 18px;
-      padding: 30px 25px;
+      padding: 2rem 1.5rem;
       text-align: center;
-      transition: 0.3s ease;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
-      animation: fadeIn 1s ease;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
-
     .why-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
-      border-color: rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 30px rgba(6,182,212,0.25);
     }
-
-    .why-card h3 {
-      color: #00eaff;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-
-    .why-card p {
-      color: #cbe3ff;
-      font-size: 0.95rem;
-      line-height: 1.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      background: rgba(0, 0, 20, 0.85);
-      font-size: 0.9rem;
-      color: #b3dfff;
-    }
-
-    /* ⚙️ Animations */
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-    @keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-    @keyframes fadeInDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
   </style>
 </head>
-
 <body>
-  <!-- 🎥 Background Video -->
-  <video autoplay muted loop playsinline class="bg-video">
-    <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4">
-  </video>
 
-  <!-- 🧭 Navbar Include -->
+  <!-- Navbar -->
   <div id="navbar"></div>
   <script>
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("navbar").innerHTML = data);
+    fetch("navbar.html").then(res=>res.text()).then(d=>{
+      document.getElementById("navbar").innerHTML=d;
+    });
   </script>
 
-  <!-- 🌊 Hero -->
-  <section class="hero">
-    <h1>Welcome to TenterCloud</h1>
-    <p>Experience next-gen Minecraft hosting built for performance, reliability, and pure speed.</p>
-    <a href="services.html">View Services</a>
+  <!-- Hero Section -->
+  <section class="text-center py-28">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 fade-up">
+      <span class="text-white font-bold">Premium </span>
+      <span class="gradient-text font-bold">Hosting </span>
+      <span class="text-white font-bold">Services</span>
+    </h1>
+    <p class="text-gray-300 max-w-2xl mx-auto text-lg mb-10 fade-up" style="animation-delay:0.2s;">
+      Reliable, secure, and high-performance hosting for gamers, developers, and creators.
+    </p>
+    <a href="services.html" class="view-btn fade-up" style="animation-delay:0.4s;">
+      ⚡︎ View Services ➜
+    </a>
   </section>
 
-  <!-- 💠 Why Choose Us -->
-  <section class="why-us" id="why">
-    <h2>Why Choose Us?</h2>
-    <div class="why-grid">
-      <div class="why-card">
-        <h3>⚡ Fast & Reliable</h3>
-        <p>Backed by high-performance NVMe storage and DDR4 RAM ensuring low latency servers.</p>
-      </div>
-      <div class="why-card">
-        <h3>🧠 Smart Control</h3>
-        <p>Powerful, easy-to-use Pterodactyl panel designed for simplicity and control.</p>
-      </div>
-      <div class="why-card">
-        <h3>🛡️ DDoS Protected</h3>
-        <p>Enterprise-level protection so your servers stay safe and online 24/7.</p>
-      </div>
-      <div class="why-card">
-        <h3>💬 Discord Support</h3>
-        <p>Friendly and active support team available anytime on our Discord.</p>
-      </div>
+  <!-- Why Choose Us -->
+  <section class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div class="why-card fade-up" style="animation-delay:0.1s;">
+      <img src="https://img.icons8.com/fluency/96/cloud-network.png" class="float mx-auto mb-4" />
+      <h3 class="text-2xl font-bold text-[var(--aqua)] mb-2">Blazing Performance</h3>
+      <p class="text-gray-400">Powered by the latest NVMe storage and high-frequency CPUs for seamless gameplay and uptime.</p>
+    </div>
+
+    <div class="why-card fade-up" style="animation-delay:0.3s;">
+      <img src="https://img.icons8.com/color/96/shield.png" class="float mx-auto mb-4" />
+      <h3 class="text-2xl font-bold text-[var(--aqua)] mb-2">Advanced Protection</h3>
+      <p class="text-gray-400">Enterprise-grade DDoS protection ensures your server stays online 24/7.</p>
+    </div>
+
+    <div class="why-card fade-up" style="animation-delay:0.5s;">
+      <img src="https://img.icons8.com/fluency/96/customer-support.png" class="float mx-auto mb-4" />
+      <h3 class="text-2xl font-bold text-[var(--aqua)] mb-2">24/7 Support</h3>
+      <p class="text-gray-400">Friendly and quick support through Discord to help you anytime, anywhere.</p>
     </div>
   </section>
 
-  <!-- 🔚 Footer -->
-  <footer>
-    © 2025 TenterCloud — All Rights Reserved
+  <!-- Footer -->
+  <footer class="text-center py-6 border-t border-[var(--aqua)]/30 text-gray-400">
+    © 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" class="text-[var(--aqua)] hover:underline" target="_blank">Join our Discord</a>
   </footer>
+
 </body>
 </html>
+
