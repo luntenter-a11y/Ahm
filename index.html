@@ -3,241 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TenterCloud | Premium Hosting Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>TenterCloud - Premium Hosting Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91-removebg-preview.png?raw=true">
   <style>
-    /* ---------- BASIC RESET ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body, html {
-      height: 100%;
-      overflow-x: hidden;
-      color: white;
-      background-color: #050010;
-    }
-
-    /* ---------- BACKGROUND VIDEO ---------- */
-    .bg-video {
+    /* Background video overlay */
+    .bg-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
-      opacity: 0.4;
-    }
-
-    /* ---------- DARK OVERLAY ---------- */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(10,0,25,0.9));
       z-index: -1;
+      filter: brightness(0.4);
     }
 
-    /* ---------- HERO SECTION ---------- */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 0 20px;
+    /* Fade-in animation */
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
     }
-
-    .hero h1 {
-      font-size: 3.8rem;
-      font-weight: 800;
-      color: #fff;
-      text-shadow: 0 0 25px rgba(0,255,255,0.5);
-      animation: fadeInDown 1.5s ease;
-    }
-
-    .hero h1 span {
-      color: #00ffff;
-    }
-
-    /* ---------- VIEW SERVICES BUTTON ---------- */
-    .hero a {
-      display: inline-block;
-      background: #00ffff;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 15px 35px;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      margin-top: 30px;
-      transition: all 0.4s ease;
-      animation: fadeInUp 2s ease;
-    }
-
-    .hero a:hover {
-      transform: translateY(-6px) scale(1.05);
-      box-shadow: 0 0 25px rgba(0,255,255,0.6);
-    }
-
-    /* ---------- WHY CHOOSE US ---------- */
-    .why-us {
-      text-align: center;
-      padding: 100px 20px;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-      margin-top: -2px;
-    }
-
-    .why-us h2 {
-      font-size: 2.8rem;
-      margin-bottom: 50px;
-      color: #fff;
-      text-shadow: 0 0 12px #00ffff;
-      animation: fadeIn 1.5s ease;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .why-card {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 20px;
-      padding: 35px;
-      backdrop-filter: blur(6px);
-      transition: all 0.4s ease;
-      animation: floatUp 1.8s ease;
-      border: 1px solid rgba(0,255,255,0.15);
-    }
-
-    .why-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 25px rgba(0,255,255,0.6);
-      border-color: #00ffff;
-    }
-
-    .why-card img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 20px;
-      animation: floatIcon 3s ease-in-out infinite;
-    }
-
-    .why-card h3 {
-      margin-bottom: 15px;
-      color: #00ffff;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .why-card p {
-      color: #ddd;
-      font-size: 1rem;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      text-align: center;
-      padding: 40px;
-      background-color: rgba(0,0,0,0.85);
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-    }
-
-    /* ---------- ANIMATIONS ---------- */
-    @keyframes fadeInDown {
-      0% {opacity: 0; transform: translateY(-30px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(30px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-
     @keyframes fadeIn {
-      0% {opacity: 0;}
-      100% {opacity: 1;}
+      to { opacity: 1; }
     }
 
-    @keyframes floatUp {
-      0% {opacity: 0; transform: translateY(20px);}
-      100% {opacity: 1; transform: translateY(0);}
+    /* Animated cards */
+    .card {
+      transition: all 0.4s ease;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
     }
 
-    @keyframes floatIcon {
-      0%, 100% {transform: translateY(0);}
-      50% {transform: translateY(-10px);}
+    /* View Services button */
+    .view-btn {
+      background: rgba(6, 182, 212, 0.85);
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 14px 36px;
+      border-radius: 12px;
+      transition: all 0.4s ease;
+      display: inline-block;
+    }
+    .view-btn:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+    }
+
+    /* Text glow */
+    .gradient-text {
+      background: linear-gradient(90deg, #06b6d4, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Emoji bounce animation */
+    .emoji {
+      display: inline-block;
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    body {
+      color: white;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
     }
   </style>
 </head>
-
 <body>
-  <!-- BACKGROUND VIDEO -->
-  <video autoplay muted loop class="bg-video">
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="bg-overlay">
     <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4">
   </video>
-  <div class="overlay"></div>
 
-  <!-- NAVBAR -->
-  <div id="navbar-container"></div>
+  <!-- Navbar -->
+  <div id="navbar"></div>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("navbar").innerHTML = data);
+  </script>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Premium <span>Hosting</span> Services</h1>
-    <a href="services.html">⚡︎ View Services ➜</a>
+  <!-- Hero Section -->
+  <section class="text-center pt-32 pb-24 fade-in">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+      <span class="text-white">Premium </span>
+      <span class="gradient-text">Hosting </span>
+      <span class="text-white">Services</span>
+    </h1>
+    <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
+      Blazing fast servers built for gamers, creators, and communities.
+    </p>
+    <a href="/services.html" class="view-btn">⚡︎ Get Started ➜</a>
   </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="why-us" id="why">
-    <h2>Why Choose Us?</h2>
-    <div class="why-grid">
-      <div class="why-card">
-        <img src="https://img.icons8.com/fluency/96/rocket.png" alt="Performance">
-        <h3>🚀 Blazing Performance</h3>
-        <p>Our servers use latest-gen NVMe storage and high-speed CPUs for ultra-smooth gameplay.</p>
+  <!-- Why Choose Us Section -->
+  <section class="max-w-6xl mx-auto px-6 pb-24 fade-in">
+    <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text">Why Choose Us?</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- Blazing Performance -->
+      <div class="card p-8 rounded-2xl text-center">
+        <div class="emoji text-5xl mb-4">⚡</div>
+        <h3 class="text-2xl font-bold text-cyan-300 mb-3">Blazing Performance</h3>
+        <p class="text-gray-300">Enjoy ultra-low latency and powerful hardware that ensures smooth gameplay and lightning-fast server responses.</p>
       </div>
 
-      <div class="why-card">
-        <img src="https://img.icons8.com/color/96/security-checked--v1.png" alt="Protection">
-        <h3>🛡️ DDoS Protection</h3>
-        <p>Enterprise-grade security keeps your worlds safe and always online under any attack.</p>
+      <!-- DDoS Protection -->
+      <div class="card p-8 rounded-2xl text-center">
+        <div class="emoji text-5xl mb-4">🛡️</div>
+        <h3 class="text-2xl font-bold text-cyan-300 mb-3">DDoS Protection</h3>
+        <p class="text-gray-300">Your server is fully shielded with enterprise-grade DDoS protection for uninterrupted uptime.</p>
       </div>
 
-      <div class="why-card">
-        <img src="https://img.icons8.com/fluency/96/customer-support.png" alt="Support">
-        <h3>💬 24/7 Discord Support</h3>
-        <p>We’re here around the clock to assist you instantly with setup, optimization, and help.</p>
+      <!-- 24/7 Support -->
+      <div class="card p-8 rounded-2xl text-center">
+        <div class="emoji text-5xl mb-4">💬</div>
+        <h3 class="text-2xl font-bold text-cyan-300 mb-3">24/7 Support</h3>
+        <p class="text-gray-300">Need help? Our friendly support team is always online to assist you anytime, anywhere.</p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 TenterCloud • All Rights Reserved
+  <!-- Footer -->
+  <footer class="py-6 text-center bg-black/50 border-t border-cyan-700">
+    <p class="text-gray-400">© 2025 TenterCloud, Inc. All rights reserved.</p>
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="text-cyan-400 hover:underline">Join our Discord</a>
   </footer>
 
-  <script>
-    // Load navbar.html dynamically
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("navbar-container").innerHTML = data;
-      });
-  </script>
 </body>
 </html>
-
