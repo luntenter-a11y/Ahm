@@ -4,47 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tenter Cloud | Premium Hosting</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
     body {
       color: #fff;
       overflow-x: hidden;
       background-color: #0b0018;
+      font-family: "Poppins", sans-serif;
     }
 
-    /* ==== Background Video ==== */
     video.bg-video {
       position: fixed;
       right: 0;
       bottom: 0;
       min-width: 100%;
       min-height: 100%;
-      z-index: -1;
       object-fit: cover;
+      z-index: -1;
       filter: brightness(0.35) blur(1px);
     }
 
-    /* ==== Navbar via Object ==== */
-    object.navbar-object {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      border: none;
-      z-index: 999;
-      pointer-events: none;
-    }
-
-    /* ==== Hero Section ==== */
+    /* Hero Section */
     .hero {
       display: flex;
       flex-direction: column;
@@ -58,7 +39,7 @@
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
       background: linear-gradient(90deg, #9b5eff, #00eaff);
       -webkit-background-clip: text;
@@ -92,7 +73,7 @@
       box-shadow: 0 0 15px #8f4aff;
     }
 
-    /* ==== Why Choose Us ==== */
+    /* Why Choose Us Section */
     .why-choose {
       padding: 100px 20px;
       text-align: center;
@@ -159,22 +140,27 @@
 </head>
 <body>
 
-  <!-- 🔥 Background Video -->
+  <!-- Background video -->
   <video autoplay muted loop playsinline class="bg-video">
     <source src="motionbg.mp4" type="video/mp4" />
   </video>
 
-  <!-- 🟣 Navbar -->
-  <object data="navbar.html" type="text/html" class="navbar-object"></object>
+  <!-- Navbar (same method as services.html) -->
+  <div id="navbar"></div>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("navbar").innerHTML = data);
+  </script>
 
-  <!-- 💎 Hero Section -->
+  <!-- Hero Section -->
   <section class="hero">
     <h1>Tenter Cloud</h1>
     <p>Next-Gen Hosting for Minecraft, Bots & More ⚡</p>
     <a href="services.html" class="btn">View Services</a>
   </section>
 
-  <!-- 🌌 Why Choose Us -->
+  <!-- Why Choose Us -->
   <section class="why-choose">
     <h2>Why Choose Us?</h2>
     <div class="features">
@@ -203,5 +189,6 @@
       </div>
     </div>
   </section>
+
 </body>
 </html>
