@@ -1,136 +1,63 @@
-// ====== DYNAMIC HOMEPAGE RENDER ======
 document.addEventListener('DOMContentLoaded', () => {
+  // Select the container in your index.html where homepage content goes
+  const homepageContainer = document.getElementById('homepage-content');
+  if (!homepageContainer) return;
 
-  // ---------- Navbar ----------
-  const navbarHtml = `
-  <header class="fixed top-0 left-0 w-full z-40 backdrop-blur bg-black/70">
-    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
-      <a href="index.html" aria-label="Home">
-        <img src="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91.png?raw=true"
-             alt="logo" class="w-12 h-12 rounded-full shadow-md border border-[rgba(6,182,212,0.08)]" />
-      </a>
-
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="index.html" class="font-bold text-white hover:text-[#06b6d4]">HOME</a>
-        <a href="#plans" class="font-bold text-white hover:text-[#06b6d4]">PRICING</a>
-        <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="font-bold text-white hover:text-[#06b6d4]">DISCORD</a>
-      </nav>
-
-      <div class="md:hidden">
-        <button id="menu-btn" class="p-1">
-          <svg class="w-8 h-8 text-[#06b6d4]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <div id="mobile-menu" class="hidden md:hidden bg-black/70 backdrop-blur px-6 py-4">
-      <a href="index.html" class="block py-2 font-bold text-[#06b6d4] uppercase">Home</a>
-      <a href="#plans" class="block py-2 font-bold text-[#06b6d4] uppercase">Pricing</a>
-      <a href="https://discord.gg/pbWjbuuMpj" class="block py-2 font-bold text-[#06b6d4] uppercase" target="_blank">Discord</a>
-    </div>
-  </header>
-  `;
-
-  // ---------- Hero ----------
+  // ---------- Hero Section ----------
   const heroHtml = `
-  <section class="max-w-6xl mx-auto px-5 text-center pt-28 pb-10">
-    <h1 class="text-4xl md:text-5xl font-extrabold text-[#06b6d4]">MINECRAFT HOSTING</h1>
-    <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
-      Select a plan — <span class="text-[#06b6d4] font-bold">Budget</span> or <span class="text-[#06b6d4] font-bold">Performance</span>. Click Buy to start — checkout & support on Discord.
-    </p>
-    <p class="mt-2 font-bold text-gray-100">ORDERS ARE PROCESSED THROUGH DISCORD</p>
-  </section>
-  `;
-
-  // ---------- Plans ----------
-  const plansHtml = () => {
-    const budgetPlans = [
-      { name: 'Wood', ram: '2GB', vCores: 1, speed: 3.5, storage: 10, price: 40 },
-      { name: 'Stone', ram: '4GB', vCores: 2, speed: 3.5, storage: 20, price: 80 },
-      { name: 'Iron', ram: '6GB', vCores: 3, speed: 3.6, storage: 30, price: 125 },
-      { name: 'Gold', ram: '8GB', vCores: 4, speed: 3.7, storage: 40, price: 200 },
-      { name: 'Diamond', ram: '10GB', vCores: 4, speed: 3.8, storage: 50, price: 250 },
-      { name: 'Emerald', ram: '12GB', vCores: 5, speed: 3.8, storage: 60, price: 300 },
-      { name: 'Obsidian', ram: '16GB', vCores: 6, speed: 3.9, storage: 80, price: 400 }
-    ];
-
-    const perfPlans = [
-      { name: 'Wood', ram: '2GB', vCores: 1, speed: 3.8, storage: 10, price: 60 },
-      { name: 'Stone', ram: '4GB', vCores: 2, speed: 3.8, storage: 20, price: 100 },
-      { name: 'Iron', ram: '6GB', vCores: 3, speed: 3.9, storage: 30, price: 150 },
-      { name: 'Gold', ram: '8GB', vCores: 4, speed: 3.95, storage: 40, price: 250 },
-      { name: 'Diamond', ram: '10GB', vCores: 4, speed: 4.0, storage: 50, price: 350 },
-      { name: 'Emerald', ram: '12GB', vCores: 5, speed: 4.0, storage: 60, price: 450 },
-      { name: 'Obsidian', ram: '16GB', vCores: 6, speed: 4.1, storage: 80, price: 500 }
-    ];
-
-    const renderPlan = (plan, type) => `
-      <article class="plan-card ${type}-tab ${type==='performance'?'hidden':''} border border-gray-700 rounded-xl p-4 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20">
-        <div class="flex items-baseline justify-between mb-2">
-          <h3 class="plan-name font-bold text-white text-lg">${plan.name}</h3>
-          <span class="tag text-gray-300 font-medium">${plan.ram}</span>
-        </div>
-        <p class="specs text-gray-300">${type==='budget'?'Intel Xeon Platinum':'AMD EPYC 7003'} • ${plan.vCores} vCore${plan.vCores>1?'s':''} @ ${plan.speed}GHz</p>
-        <p class="specs text-gray-300">${plan.ram} DDR4 RAM</p>
-        <p class="specs text-gray-300">${plan.storage}GB NVMe Gen4</p>
-        <p class="specs text-gray-300">1 Gbps Network • DDoS Protected</p>
-        <div class="price text-white font-bold text-xl mt-2">₹${plan.price} <span class="text-gray-400 text-sm">/ month</span></div>
-        <a class="buy-btn mt-3 inline-block px-4 py-2 bg-[#06b6d4] hover:bg-purple-600 rounded font-bold text-black" href="https://discord.gg/pbWjbuuMpj" target="_blank">Buy Now</a>
-      </article>
-    `;
-
-    return `
-    <section class="max-w-6xl mx-auto px-5">
-      <div class="tabs flex justify-center gap-4 mb-8 mt-4">
-        <button class="tab-btn active px-4 py-2 bg-[#06b6d4] rounded text-black font-bold" data-tab="budget">BUDGET</button>
-        <button class="tab-btn px-4 py-2 bg-purple-600 rounded text-white font-bold" data-tab="performance">PERFORMANCE</button>
-      </div>
-
-      <section id="plans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-3 pb-20">
-        ${budgetPlans.map(p => renderPlan(p, 'budget')).join('')}
-        ${perfPlans.map(p => renderPlan(p, 'performance')).join('')}
-      </section>
+    <section class="max-w-6xl mx-auto px-5 text-center pt-28 pb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[#06b6d4]">WELCOME TO TENTERCLOUD</h1>
+      <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
+        The best hosting for Minecraft and other services. Fast, reliable, and secure.
+      </p>
+      <a href="#services" class="mt-6 inline-block px-6 py-3 bg-[#06b6d4] hover:bg-purple-600 text-black font-bold rounded">
+        View Services
+      </a>
     </section>
-    `;
-  };
-
-  // ---------- FOOTER ----------
-  const footerHtml = `
-    <footer class="mt-6 pb-12 text-center text-gray-400">
-      <p>© 2025 TenterCloud, Inc. • <a href="https://discord.gg/pbWjbuuMpj" class="text-[#06b6d4]" target="_blank">Join our Discord</a></p>
-    </footer>
   `;
 
-  // ---------- INSERT ALL ----------
-  document.body.innerHTML = navbarHtml + heroHtml + plansHtml() + footerHtml;
+  // ---------- Services Section ----------
+  const servicesHtml = `
+    <section id="services" class="max-w-6xl mx-auto px-5 py-16 text-center">
+      <h2 class="text-3xl font-bold text-white mb-8">Our Services</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
+          <h3 class="font-bold text-white text-xl mb-2">Minecraft Hosting</h3>
+          <p class="text-gray-300">Reliable and fast servers for all versions of Minecraft.</p>
+        </div>
+        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
+          <h3 class="font-bold text-white text-xl mb-2">Discord Bots Hosting</h3>
+          <p class="text-gray-300">Host your bots with high uptime and low latency.</p>
+        </div>
+        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
+          <h3 class="font-bold text-white text-xl mb-2">Web Hosting</h3>
+          <p class="text-gray-300">Fast and secure hosting for your websites and apps.</p>
+        </div>
+      </div>
+    </section>
+  `;
 
-  // ---------- MOBILE MENU ----------
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if(menuBtn && mobileMenu){
-    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-  }
+  // ---------- Why Choose Us Section ----------
+  const whyHtml = `
+    <section id="why" class="max-w-6xl mx-auto px-5 py-16 text-center">
+      <h2 class="text-3xl font-bold text-white mb-8">Why Choose Us?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
+          <h3 class="font-bold text-white text-xl mb-2">Performance</h3>
+          <p class="text-gray-300">High-speed servers with top-tier hardware.</p>
+        </div>
+        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
+          <h3 class="font-bold text-white text-xl mb-2">Security</h3>
+          <p class="text-gray-300">DDoS protected network and secure infrastructure.</p>
+        </div>
+        <div class="p-6 bg-gradient-to-b from-[#06b6d4]/20 to-purple-700/20 rounded-xl">
+          <h3 class="font-bold text-white text-xl mb-2">Support</h3>
+          <p class="text-gray-300">24/7 support via Discord to help you anytime.</p>
+        </div>
+      </div>
+    </section>
+  `;
 
-  // ---------- TABS LOGIC ----------
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const budgetTabs = document.querySelectorAll('.budget-tab');
-  const perfTabs = document.querySelectorAll('.performance-tab');
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      if (btn.dataset.tab === 'performance') {
-        budgetTabs.forEach(p => p.classList.add('hidden'));
-        perfTabs.forEach(p => p.classList.remove('hidden'));
-      } else {
-        budgetTabs.forEach(p => p.classList.remove('hidden'));
-        perfTabs.forEach(p => p.classList.add('hidden'));
-      }
-    });
-  });
-
+  // ---------- Insert all sections ----------
+  homepageContainer.innerHTML = heroHtml + servicesHtml + whyHtml;
 });
