@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91-removebg-preview.png?raw=true">
   <style>
-    /* Background video overlay */
+    /* Background video */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -16,30 +16,55 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-      filter: brightness(0.4);
+      filter: brightness(0.35);
     }
 
-    /* Fade-in animation */
+    body {
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      background-color: #020617;
+    }
+
+    /* Glow gradient */
+    .gradient-text {
+      background: linear-gradient(90deg, #06b6d4, #4f46e5, #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Fade animation */
     .fade-in {
-      animation: fadeIn 1.2s ease forwards;
       opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
     }
     @keyframes fadeIn {
       to { opacity: 1; }
     }
 
-    /* Animated cards */
+    /* Cards */
     .card {
-      transition: all 0.4s ease;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(6, 182, 212, 0.4);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
     }
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
     }
 
-    /* View Services button */
+    /* Bouncing animation for icons */
+    .bounce {
+      animation: bounce 2.2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Button */
     .view-btn {
       background: rgba(6, 182, 212, 0.85);
       color: white;
@@ -49,39 +74,18 @@
       border-radius: 12px;
       transition: all 0.4s ease;
       display: inline-block;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
     }
     .view-btn:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
-    }
-
-    /* Text glow */
-    .gradient-text {
-      background: linear-gradient(90deg, #06b6d4, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Emoji bounce animation */
-    .emoji {
-      display: inline-block;
-      animation: float 2s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    body {
-      color: white;
-      overflow-x: hidden;
-      font-family: 'Poppins', sans-serif;
+      transform: translateY(-6px);
+      box-shadow: 0 0 35px rgba(6, 182, 212, 0.6);
+      filter: brightness(1.1);
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Video -->
+  <!-- Background video -->
   <video autoplay muted loop playsinline class="bg-overlay">
     <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4">
   </video>
@@ -94,7 +98,7 @@
       .then(data => document.getElementById("navbar").innerHTML = data);
   </script>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="text-center pt-32 pb-24 fade-in">
     <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
       <span class="text-white">Premium </span>
@@ -104,33 +108,58 @@
     <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-lg">
       Blazing fast servers built for gamers, creators, and communities.
     </p>
-    <a href="/services.html" class="view-btn">⚡︎ Get Started ➜</a>
+    <a href="services.html" class="view-btn">⚡︎ View Services ➜</a>
   </section>
 
-  <!-- Why Choose Us Section -->
+  <!-- Why Choose Us -->
   <section class="max-w-6xl mx-auto px-6 pb-24 fade-in">
     <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text">Why Choose Us?</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <!-- Blazing Performance -->
       <div class="card p-8 rounded-2xl text-center">
-        <div class="emoji text-5xl mb-4">⚡</div>
+        <div class="text-5xl mb-4 bounce">⚡</div>
         <h3 class="text-2xl font-bold text-cyan-300 mb-3">Blazing Performance</h3>
-        <p class="text-gray-300">Enjoy ultra-low latency and powerful hardware that ensures smooth gameplay and lightning-fast server responses.</p>
+        <p class="text-gray-300">Ultra-low latency & top-tier hardware for smooth gameplay and lightning-fast response.</p>
       </div>
 
-      <!-- DDoS Protection -->
       <div class="card p-8 rounded-2xl text-center">
-        <div class="emoji text-5xl mb-4">🛡️</div>
+        <div class="text-5xl mb-4 bounce">🛡️</div>
         <h3 class="text-2xl font-bold text-cyan-300 mb-3">DDoS Protection</h3>
-        <p class="text-gray-300">Your server is fully shielded with enterprise-grade DDoS protection for uninterrupted uptime.</p>
+        <p class="text-gray-300">Enterprise-grade protection keeps your servers secure and online 24/7.</p>
       </div>
 
-      <!-- 24/7 Support -->
       <div class="card p-8 rounded-2xl text-center">
-        <div class="emoji text-5xl mb-4">💬</div>
+        <div class="text-5xl mb-4 bounce">💬</div>
         <h3 class="text-2xl font-bold text-cyan-300 mb-3">24/7 Support</h3>
-        <p class="text-gray-300">Need help? Our friendly support team is always online to assist you anytime, anywhere.</p>
+        <p class="text-gray-300">Our support heroes are always available to help you with anything you need.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Services -->
+  <section class="max-w-6xl mx-auto px-6 pb-24 fade-in">
+    <h2 class="text-4xl font-extrabold text-center mb-16 gradient-text">Our Services</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="card p-8 rounded-2xl text-center">
+        <img src="https://img.icons8.com/color/96/minecraft-grass-cube.png" class="mx-auto mb-4 bounce" alt="Minecraft Hosting">
+        <h3 class="text-2xl font-bold text-cyan-300 mb-3">Minecraft Hosting</h3>
+        <p class="text-gray-300 mb-4">Powerful NVMe servers built to handle your worlds with ease.</p>
+        <a href="minecraft.html" class="view-btn">Explore ➜</a>
+      </div>
+
+      <div class="card p-8 rounded-2xl text-center">
+        <img src="https://img.icons8.com/fluency/96/server.png" class="mx-auto mb-4 bounce" alt="VPS Hosting">
+        <h3 class="text-2xl font-bold text-cyan-300 mb-3">VPS Hosting</h3>
+        <p class="text-gray-300 mb-4">Scalable virtual machines for any project with top-tier CPUs.</p>
+        <a href="services.html" class="view-btn">Explore ➜</a>
+      </div>
+
+      <div class="card p-8 rounded-2xl text-center">
+        <img src="https://img.icons8.com/fluency/96/discord-logo.png" class="mx-auto mb-4 bounce" alt="Discord Bot Hosting">
+        <h3 class="text-2xl font-bold text-cyan-300 mb-3">Discord Bot Hosting</h3>
+        <p class="text-gray-300 mb-4">Reliable, 24/7 hosting for your Discord bots and automation tools.</p>
+        <a href="services.html" class="view-btn">Explore ➜</a>
       </div>
     </div>
   </section>
