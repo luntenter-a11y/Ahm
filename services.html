@@ -7,12 +7,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="https://github.com/luntenter-a11y/Ahm/blob/main/Gemini_Generated_Image_6y919r6y919r6y91-removebg-preview.png?raw=true">
   <style>
-    /* Navbar underline animation */
+    /* Navbar text styling */
     nav a {
       position: relative;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-weight: 600;
+      text-transform: capitalize;
+      color: white;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      color: #06b6d4;
     }
     nav a::after {
       content: "";
@@ -28,20 +33,7 @@
       width: 100%;
     }
 
-    /* Slide-up + fade animation */
-    .slide-up {
-      opacity: 0;
-      transform: translateY(40px);
-      animation: slideUp 1s ease forwards;
-    }
-    @keyframes slideUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Gradient background */
+    /* Background theme */
     body {
       background: radial-gradient(circle at top left, #1a1a2e 0%, #0f172a 60%, #020617 100%);
       color: white;
@@ -49,21 +41,25 @@
       overflow-x: hidden;
     }
 
-    /* Card styles */
+    /* Service cards */
     .service-card {
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid transparent;
-      border-radius: 20px;
-      transition: all 0.5s ease;
+      border-radius: 28px;
+      transition: all 0.4s ease;
       backdrop-filter: blur(10px);
       border-image: linear-gradient(90deg, #06b6d4, #a855f7) 1;
     }
+
+    /* Hover animation like navbar button */
     .service-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 0 40px rgba(168, 85, 247, 0.4);
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+      border-image: linear-gradient(90deg, #a855f7, #06b6d4) 1;
+      filter: brightness(1.1);
     }
 
-    /* Button glow */
+    /* Buttons */
     .glow-button {
       background: linear-gradient(90deg, #06b6d4, #a855f7);
       transition: all 0.3s ease;
@@ -71,12 +67,12 @@
       box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
     }
     .glow-button:hover {
-      box-shadow: 0 0 35px rgba(168, 85, 247, 0.7);
-      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+      transform: scale(1.05);
       filter: brightness(1.1);
     }
 
-    /* Floating icons animation */
+    /* Floating icon animation */
     .float {
       animation: float 3s ease-in-out infinite;
     }
@@ -85,7 +81,20 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* Glow text gradient */
+    /* Smooth fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Gradient heading */
     .gradient-text {
       background: linear-gradient(90deg, #06b6d4, #a855f7, #4f46e5);
       -webkit-background-clip: text;
@@ -105,41 +114,41 @@
   </script>
 
   <!-- Hero Section -->
-  <section class="text-center py-24 slide-up">
+  <section class="text-center py-24 fade-in">
     <h1 class="text-5xl md:text-6xl font-extrabold gradient-text mb-6">
       Our Premium Hosting Services
     </h1>
     <p class="text-gray-300 max-w-2xl mx-auto text-lg">
-      Powerful, secure, and lightning-fast — built to handle everything you create.
+      Fast, secure, and optimized — designed for creators, communities, and businesses.
     </p>
   </section>
 
-  <!-- Services Cards -->
+  <!-- Services Section -->
   <section class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 pb-24">
 
     <!-- Minecraft Hosting -->
-    <div class="service-card p-8 text-center slide-up" style="animation-delay: 0.2s;">
+    <div class="service-card p-8 text-center fade-in" style="animation-delay: 0.2s;">
       <img src="https://img.icons8.com/color/96/minecraft-grass-cube.png" class="mx-auto mb-4 float" alt="Minecraft Hosting">
       <h3 class="text-3xl font-bold text-purple-300 mb-2">Minecraft Hosting</h3>
-      <p class="text-gray-400 mb-4">Lag-free Minecraft servers with instant setup, DDoS protection, and full control.</p>
+      <p class="text-gray-400 mb-4">Lag-free servers with DDoS protection and instant setup — crafted for smooth gameplay.</p>
       <p class="text-2xl font-bold text-cyan-400 mb-4">Starting from ₹49/month</p>
       <a href="/minecraft.html" class="glow-button px-6 py-2 rounded-full text-white font-semibold">Get Started</a>
     </div>
 
     <!-- VPS Hosting -->
-    <div class="service-card p-8 text-center slide-up" style="animation-delay: 0.4s;">
+    <div class="service-card p-8 text-center fade-in" style="animation-delay: 0.4s;">
       <img src="https://img.icons8.com/fluency/96/server.png" class="mx-auto mb-4 float" alt="VPS Hosting">
       <h3 class="text-3xl font-bold text-cyan-300 mb-2">VPS Hosting</h3>
-      <p class="text-gray-400 mb-4">Run your apps and servers on fast, scalable NVMe VPS with root access.</p>
+      <p class="text-gray-400 mb-4">Full root access, NVMe storage, and high-end AMD EPYC CPUs for ultimate flexibility.</p>
       <p class="text-2xl font-bold text-purple-400 mb-4">Starting from ₹499/month</p>
       <a href="/vps.html" class="glow-button px-6 py-2 rounded-full text-white font-semibold">Deploy Now</a>
     </div>
 
     <!-- Discord Bot Hosting -->
-    <div class="service-card p-8 text-center slide-up" style="animation-delay: 0.6s;">
+    <div class="service-card p-8 text-center fade-in" style="animation-delay: 0.6s;">
       <img src="https://img.icons8.com/fluency/96/discord-logo.png" class="mx-auto mb-4 float" alt="Discord Bot Hosting">
       <h3 class="text-3xl font-bold text-purple-300 mb-2">Discord Bot Hosting</h3>
-      <p class="text-gray-400 mb-4">Host your bots with 99.9% uptime, instant start, and dedicated bot performance.</p>
+      <p class="text-gray-400 mb-4">Keep your bots 24/7 online with high reliability and automatic restart features.</p>
       <p class="text-2xl font-bold text-cyan-400 mb-4">Starting from ₹39/month</p>
       <a href="/bot.html" class="glow-button px-6 py-2 rounded-full text-white font-semibold">Host Now</a>
     </div>
