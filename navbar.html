@@ -1,76 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Navbar gradient & blur */
-    nav {
-      backdrop-filter: blur(14px);
-      background: rgba(15, 6, 35, 0.55);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+<!-- 🖤 TenterCloud™ Black Navbar -->
+<nav class="fixed w-full top-0 left-0 z-50"
+     style="background-color: #000000; box-shadow: 0 3px 15px rgba(0,0,0,0.8);">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
 
-    /* Link underline animation */
-    .nav-link {
-      position: relative;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #06b6d4, #a855f7);
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    /* Discord Button */
-    .discord-btn {
-      background: linear-gradient(90deg, #5865F2, #404EED);
-      color: white;
-      font-weight: 600;
-      border-radius: 0.75rem;
-      padding: 0.5rem 1.25rem;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
-    .discord-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 18px rgba(88, 101, 242, 0.7);
-    }
-  </style>
-</head>
-<body>
-
-  <nav class="w-full sticky top-0 z-50 flex items-center justify-between px-8 py-4">
-    <!-- Left: Logo + Brand -->
-    <div class="flex items-center space-x-3">
-      <img src="https://github.com/luntenter-a11y/Ahm/blob/main/image.png?raw=true" alt="Logo" class="w-9 h-9 rounded-md">
-      <span class="text-white font-extrabold text-xl">TenterCloud™</span>
+    <!-- Logo Only -->
+    <div class="flex items-center">
+      <img src="https://github.com/luntenter-a11y/Ahm/blob/main/image.png?raw=true" 
+           alt="TenterCloud Logo" class="h-10">
     </div>
 
-    <!-- Center: Nav Links -->
-    <div class="flex space-x-10 text-white text-lg">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="minecraft.html" class="nav-link">Minecraft</a>
-      <a href="services.html" class="nav-link">Services</a>
+    <!-- Links -->
+    <div class="hidden md:flex space-x-8">
+      <a href="index.html" class="nav-link text-white font-bold">Home</a>
+      <a href="minecraft.html" class="nav-link text-white font-bold">Minecraft</a>
+      <a href="vps.html" class="nav-link text-white font-bold">VPS</a>
+      <a href="discordbot.html" class="nav-link text-white font-bold">Discord Bot</a>
     </div>
 
-    <!-- Right: Discord Button -->
-    <div>
-      <a href="https://discord.gg/pbWjbuuMpj" target="_blank" class="discord-btn flex items-center space-x-2">
-        <img src="https://github.com/luntenter-a11y/Ahm/blob/main/imageaa-removebg-preview.png?raw=true" alt="Discord" class="w-5 h-5">
-        <span>DISCORD</span>
-      </a>
-    </div>
-  </nav>
+    <!-- Discord Button (Black Rectangular Box + Glow) -->
+    <a href="https://discord.gg/pbWjbuuMpj" target="_blank"
+       class="discord-btn flex items-center space-x-2 px-5 py-2 rounded-lg font-bold text-white transition-all duration-300">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" 
+           alt="Discord Logo" class="h-6 w-6">
+      <span>DISCORD</span>
+    </a>
+  </div>
+</nav>
 
-</body>
-</html>
+<!-- Tailwind + Custom Styles -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* Navbar link underline effect */
+  .nav-link {
+    position: relative;
+    padding: 4px 8px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: red;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Discord button style */
+  .discord-btn {
+    background: #000000;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  }
+
+  .discord-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.5);
+    opacity: 0.95;
+  }
+</style>
