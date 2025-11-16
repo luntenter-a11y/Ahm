@@ -1,3 +1,4 @@
+<!-- Updated index.html with improved Services section and external navbar.html support -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,6 @@
       overflow-x: hidden;
       background: #000;
     }
-
     .btn {
       background: linear-gradient(90deg, #7c3aed, #00c9c9, #3b82f6);
       color: white;
@@ -22,27 +22,22 @@
       font-weight: 500;
       transition: 0.3s;
     }
-
     .btn:hover {
       opacity: 0.9;
       transform: translateY(-2px);
     }
-
-    /* Specific style for Hero Get Started button */
     .hero-btn {
       font-weight: bold;
-      background-color: #00c9c9; /* Aqua background */
+      background-color: #00c9c9;
       color: white;
       padding: 12px 24px;
       border-radius: 8px;
       transition: 0.3s;
     }
-
     .hero-btn:hover {
       background-color: #00bfbf;
       transform: translateY(-2px);
     }
-
     .card {
       background: rgba(255, 255, 255, 0.12);
       border-radius: 15px;
@@ -50,12 +45,10 @@
       backdrop-filter: blur(10px);
       transition: 0.3s;
     }
-
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(123, 58, 237, 0.3);
     }
-
     video.bg-video {
       position: fixed;
       top: 0;
@@ -70,22 +63,17 @@
 </head>
 <body>
 
-  <!-- Background Video -->
   <video autoplay muted loop playsinline class="bg-video">
     <source src="https://motionbgs.com/media/530/by-the-fire-minecraft.960x540.mp4" type="video/mp4">
   </video>
 
-  <!-- Navbar Load -->
   <div id="navbar-container"></div>
 
   <script>
-    // Load navbar.html dynamically
     fetch("navbar.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("navbar-container").innerHTML = data;
-
-        // Replace logo with the provided link after navbar loads
+      .then(res => res.text())
+      .then(nav => {
+        document.getElementById("navbar-container").innerHTML = nav;
         const logo = document.querySelector("nav img");
         if (logo) logo.src = "https://github.com/luntenter-a11y/Ahm/blob/main/image.png?raw=true";
       });
@@ -93,83 +81,57 @@
 
   <div class="pt-28"></div>
 
-  <!-- Hero Section -->
+  <!-- HERO -->
   <section class="min-h-[80vh] flex flex-col justify-center items-center text-center px-6">
     <h1 class="text-5xl font-bold mb-4 text-white drop-shadow-lg">Fast • Secure • Reliable</h1>
     <p class="text-gray-200 mb-8 max-w-xl">Premium hosting for Minecraft, VPS, and Discord Bots with unbeatable performance and uptime.</p>
     <a href="#services" class="hero-btn">🗲 Get Started 🗲</a>
   </section>
 
-  <!-- Hosting Services -->
-  <section id="services" class="py-20">
+  <!-- SERVICES -->
+  <section id="services" class="py-24">
     <div class="container mx-auto px-6 text-center">
       <h2 class="text-4xl font-bold text-white mb-12 drop-shadow-lg">Our Hosting Services</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- MINECRAFT HOSTING -->
         <div class="card">
-          <div class="text-5xl mb-4 text-[#00c9c9]"><i class="fas fa-cube"></i></div>
-          <h3 class="text-2xl font-bold mb-2 text-white">Minecraft Hosting</h3>
-          <p class="text-gray-200 mb-4">Lag-free gameplay, 24/7 uptime, mod support.</p>
+          <img src="https://i.imgur.com/vx61Dro.png" class="h-20 mx-auto mb-4" alt="Minecraft Icon" />
+          <h3 class="text-2xl font-bold mb-2">Minecraft Hosting</h3>
+          <p class="text-gray-200 mb-4">Smooth gameplay, dedicated RAM, modpacks & plugins supported.</p>
           <p class="font-semibold text-[#00ffff] mb-4">Starting at $1/mo</p>
-          <a href="minecraft.html" class="btn w-full block">View Plans</a>
+          <a href="minecraft.html" class="btn block w-full">View Plans</a>
         </div>
 
+        <!-- VPS HOSTING -->
         <div class="card">
-          <div class="text-5xl mb-4 text-[#7c3aed]"><i class="fas fa-server"></i></div>
-          <h3 class="text-2xl font-bold mb-2 text-white">VPS Hosting</h3>
-          <p class="text-gray-200 mb-4">Full control, scalable power, DDoS protection.</p>
+          <img src="https://i.imgur.com/KaHk5Or.png" class="h-20 mx-auto mb-4" alt="VPS Icon" />
+          <h3 class="text-2xl font-bold mb-2">Powerful VPS</h3>
+          <p class="text-gray-200 mb-4">Full root access, scalable CPU, NVMe storage & DDoS protection.</p>
           <p class="font-semibold text-[#00ffff] mb-4">Starting at $5/mo</p>
-          <a href="vps.html" class="btn w-full block">View Plans</a>
+          <a href="vps.html" class="btn block w-full">View Plans</a>
         </div>
 
+        <!-- DISCORD BOT HOSTING -->
         <div class="card">
-          <div class="text-5xl mb-4 text-[#3b82f6]"><i class="fab fa-discord"></i></div>
-          <h3 class="text-2xl font-bold mb-2 text-white">Discord Bot Hosting</h3>
-          <p class="text-gray-200 mb-4">24/7 online bots, fast response & low latency.</p>
+          <img src="https://i.imgur.com/8ex8oQk.png" class="h-20 mx-auto mb-4" alt="Discord Icon" />
+          <h3 class="text-2xl font-bold mb-2">Discord Bot Hosting</h3>
+          <p class="text-gray-200 mb-4">Instant boot, low latency, supports Node.js, Python, Java.</p>
           <p class="font-semibold text-[#00ffff] mb-4">Starting at $2.99/mo</p>
-          <a href="discordbot.html" class="btn w-full block">View Plans</a>
+          <a href="discordbot.html" class="btn block w-full">View Plans</a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Server Status -->
-  <section class="py-20">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold text-white mb-12 drop-shadow-lg">Server Status</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <div class="card">
-          <h3 class="text-xl font-bold text-[#3b82f6] mb-2">India Node</h3>
-          <p class="text-gray-100 mb-3">Status: <span class="text-green-400 font-semibold">Online</span></p>
-          <p class="text-gray-300">Ping: 9ms • Uptime: 99.8%</p>
-        </div>
-
-        <div class="card">
-          <h3 class="text-xl font-bold text-[#7c3aed] mb-2">Singapore Node</h3>
-          <p class="text-gray-100 mb-3">Status: <span class="text-green-400 font-semibold">Online</span></p>
-          <p class="text-gray-300">Ping: 14ms • Uptime: 99.9%</p>
-        </div>
-
-        <div class="card">
-          <h3 class="text-xl font-bold text-[#00c9c9] mb-2">US East Node</h3>
-          <p class="text-gray-100 mb-3">Status: <span class="text-green-400 font-semibold">Online</span></p>
-          <p class="text-gray-300">Ping: 20ms • Uptime: 99.7%</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="py-8 text-center bg-gradient-to-r from-[#7c3aed] via-[#00c9c9] to-[#3b82f6]">
-    <img src="https://github.com/luntenter-a11y/Ahm/blob/main/image-removebg-preview%20(1).png?raw=true" class="h-10 mx-auto mb-3" alt="Logo">
+    <img src="https://github.com/luntenter-a11y/Ahm/blob/main/image-removebg-preview%20(1).png?raw=true" class="h-10 mx-auto mb-3" />
     <p class="text-white">© 2025 TenterCloud™. All rights reserved.</p>
   </footer>
 
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
