@@ -1,4 +1,4 @@
-name: VPS Monitor Bot
+name: VPS Monitor Smart
 
 on:
   schedule:
@@ -6,22 +6,51 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-vps:
+  check:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Restore last state
+        uses: actions/cache@v4
+        with:
+          path: vps_state.txt
+          key: vps-state
+
       - name: Check VPS
         run: |
           if nc -z 103.190.93.178 22; then
+            NEW_STATE="UP"
             STATUS="<:pterodactyl:1514136558989475861> **Pterodactyl Panel** is now back **ONLINE**."
           else
+            NEW_STATE="DOWN"
             STATUS="<:pterodactyl:1514136558989475861> **Pterodactyl Panel** is currently **OFFLINE**! Kindly wait for update."
           fi
 
-          echo "$STATUS"
+          OLD_STATE="unknown"
 
-          curl -X POST \
-          -H "Content-Type: application/json" \
-          -H "Authorization: Bot ${{ secrets.DISCORD_TOKEN }}" \
-          -d "{\"content\":\"$STATUS\"}" \
-          https://discord.com/api/v10/channels/${{ secrets.CHANNEL_ID }}/messages
+          if [ -f vps_state.txt ]; then
+            OLD_STATE=$(cat vps_state.txt)
+          fi
+
+          echo "Old: $OLD_STATE"
+          echo "New: $NEW_STATE"
+
+          if [ "$OLD_STATE" != "$NEW_STATE" ]; then
+            echo "State changed → sending Discord message"
+
+            curl -X POST \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${{ secrets.DISCORD_TOKEN }}" \
+              -d "{\"content\":\"$STATUS\"}" \
+              https://discord.com/api/v10/channels/${{ secrets.CHANNEL_ID }}/messages
+          else
+            echo "No change → skipping message"
+          fi
+
+          echo $NEW_STATE > vps_state.txt
+
+      - name: Save state
+        uses: actions/cache@v4
+        with:
+          path: vps_state.txt
+          key: vps-state
