@@ -1,0 +1,27 @@
+name: VPS Monitor Bot
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  check-vps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check VPS
+        run: |
+          if nc -z 103.190.93.178 22; then
+            STATUS="<:pterodactyl:1514136558989475861> **Pterodactyl Panel** is now back **ONLINE**."
+          else
+            STATUS="<:pterodactyl:1514136558989475861> **Pterodactyl Panel** is currently **OFFLINE**! Kindly wait for update."
+          fi
+
+          echo "$STATUS"
+
+          curl -X POST \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bot ${{ secrets.DISCORD_TOKEN }}" \
+          -d "{\"content\":\"$STATUS\"}" \
+          https://discord.com/api/v10/channels/${{ secrets.CHANNEL_ID }}/messages
